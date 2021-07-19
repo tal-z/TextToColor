@@ -7,4 +7,3 @@ Resources:
 -https://www.w3schools.com/colors/colors_crayola.asp
 -http://mkweb.bcgsc.ca/colornames/
 
-Modules:
