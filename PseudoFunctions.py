@@ -32,7 +32,11 @@ def look_up_color(token=str):
     """
     
 
-def show_color(hex=str):
+def show_color(hex_code=str):
+    """
+    Takes a properly-formattend hex color code as input, 
+    and opens a window displaying the color. 
+    """
     gui = Tk(className=f'Hex Color Code {hex}')
     gui.geometry("400x200")
     gui.configure(bg=hex)
