@@ -10,3 +10,5 @@ Resources:
   - NLTK Information extraction chapter: http://www.nltk.org/book/ch07.html
   - colorsys source code: https://github.com/python/cpython/blob/3.9/Lib/colorsys.py
 
+Notes:
+To properly lighten a color, I believe that I need to return a value that is somewhere between the min and max values of RGB. So, while 255 is a theoretical lightness ceiling, if a specific color has no RGB value that equals 255, this is an invalid lightness factor.
