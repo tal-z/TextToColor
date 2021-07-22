@@ -8,25 +8,36 @@ Created on Mon Jul 19 13:56:33 2021
 import pandas as pd
 import colorsys
 from tkinter import Tk
+from nltk.tokenize import word_tokenize
+import random
+import numpy as np
+from math import sqrt
+
 
 colornames_df = pd.read_csv('colornames.txt', delimiter=" ", skiprows=60, header=None)
 colornames_df.columns = ['IDX', 'NAME', 'rgb', 'R', 'G', 'B', 'hex', 'HEX', 'hsv', 'h', 's', 'v', 'xyz', 'X', 'Y', 'Z',
                          'lab', 'L', 'A', 'B', 'lch', 'L', 'C', 'H', 'cmyk', 'C', 'M', 'Y', 'K', 'NEIGHBOUR_STR',
                          'NUM_NEIGHBOURS_MAXDE', 'WORD_TAGS']
+colornames_df['WORD_TAGS'] = colornames_df['WORD_TAGS'].apply(lambda x: x.split(":"))
 
 
-def words_to_colors(input=str):
+def words_to_color(input=str):
     """
-    Takes a string as input.    
-    Tokenizes the string. 
-    Looks for tokens that represent colors. --> converts tokens to hex codes
-    Looks for tokens that modify color tokens. --> modifies hex code dependent on description.
+    Takes a string as input.
+    Tokenizes the string.
     """
+    words = word_tokenize(input)
+    similarity_df = pd.DataFrame(colornames_df)
+    similarity_df['similarity'] = similarity_df['WORD_TAGS'].apply(lambda x: len(set(words) & set(x)) / float(len(set(words) | set(x))) * 100)
+    return similarity_df.sort_values(by='similarity').iloc[-1].NAME, \
+           similarity_df.sort_values(by='similarity').iloc[-1].WORD_TAGS, \
+           similarity_df.sort_values(by='similarity').iloc[-1].similarity
 
 
 def look_up_color(token=str):
     """
-    Takes a token, and checks whether it is present in a pre-defined dictionary of colors
+    Takes a token, and checks whether it is present in a pre-defined dictionary of color names.
+    If the token is found, it returns the full range of hex codes that match the color name.
     """
     token = token.replace(" ", "_")
     return list(colornames_df.query(f'NAME=="{token.lower()}"').HEX)
@@ -54,7 +65,7 @@ def rgb_to_hex(red, green, blue):
     return '#%02x%02x%02x' % (int(round(red)), int(round(green)), int(round(blue)))
 
 
-def darken_color(hex_str=str, darkening_value=.5):
+def darken_color(hex_str=str, darkening_value=.25):
     """
     Takes a hex code and returns a hex code for a darker shade of the original hex code.
     Takes "darkening_value" as an optional input. Darkening value is a float between 0 and 1.
@@ -67,7 +78,7 @@ def darken_color(hex_str=str, darkening_value=.5):
     return darker_hex
 
 
-def lighten_color(hex_str=str, lightening_value=.5):
+def lighten_color(hex_str=str, lightening_value=.25):
     """
     Takes a hex code and returns a hex code for a lighter shade of the original hex code.
     Takes "lightening_value" as an optional input. Lightening value is a float between 0 and 1.
@@ -104,10 +115,72 @@ def show_color(hex_str=str):
     gui.configure(bg=f"#{hex_str}")
     gui.mainloop()
 
+def measure_hsv_distance(hsv1=tuple, hsv2=tuple):
+    """
+    Read this: https://stackoverflow.com/questions/35113979/calculate-distance-between-colors-in-hsv-space
+    """
+    dh = min(abs(hsv1[0]-hsv2[0]), 360-abs(hsv1[0]-hsv2[0])) / 180
+    ds = abs(hsv1[1]-hsv2[1])
+    dv = abs(hsv1[2]-hsv2[2]) / 255
+    distance = sqrt(dh**2 + ds**2 + dv**2)
+    return distance
+
+def fix_colorsys_hsv(colorsys_hsv=tuple):
+    """
+    Takes an HSV triplet as provided by colorsys, and converts it to match the 
+    notation used in colornames.txt
+    """
+    h = colorsys_hsv[0]*360
+    s = colorsys_hsv[1]*100
+    v = (colorsys_hsv[2]/255) * 100
+    corrected_hsv = (h,s,v)
+    return corrected_hsv
 
 if __name__ == '__main__':
-    sample_hex = look_up_color('negroni')
-    show_color(sample_hex[0])
-    show_color(lighten_color(sample_hex[0]))
-    show_color(darken_color(sample_hex[0]))
-    show_color(brighten_color(sample_hex[0]))
+    """
+    sample_hex = random.choice(look_up_color('parsley'))
+    show_color(sample_hex)
+    show_color(lighten_color(sample_hex))
+    show_color(darken_color(sample_hex))
+    show_color(brighten_color(sample_hex))
+    """
+    color_name1 = 'red'
+    color_name2 = 'orange'
+    show_color(look_up_color(color_name1)[-1])
+    show_color(look_up_color(color_name2)[-1])
+    rgb1 = hex_to_rgb(look_up_color(color_name1)[-1])
+    rgb2 = hex_to_rgb(look_up_color(color_name2)[-1])
+    hsv1 = colorsys.rgb_to_hsv(rgb1[0], rgb1[1], rgb1[2])
+    hsv2 = colorsys.rgb_to_hsv(rgb2[0], rgb2[1], rgb2[2])
+    hsv1 = fix_colorsys_hsv(hsv1)
+    hsv2 = fix_colorsys_hsv(hsv2)
+
+
+    print(hsv1, hsv2)
+    print(measure_hsv_distance(hsv1, hsv2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
