@@ -10,7 +10,6 @@ import colorsys
 from tkinter import Tk
 from nltk.tokenize import word_tokenize
 import random
-import numpy as np
 from math import sqrt
 
 
