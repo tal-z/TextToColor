@@ -24,6 +24,7 @@ def words_to_color(input=str):
     """
     Takes a string as input.
     Tokenizes the string.
+    Does some other unhelpful stuff.
     """
     words = word_tokenize(input)
     similarity_df = pd.DataFrame(colornames_df)
