@@ -10,8 +10,7 @@ import colorsys
 from tkinter import Tk
 from nltk.tokenize import word_tokenize
 import random
-from math import sqrt
-
+from math import sin, cos, pi
 
 colornames_df = pd.read_csv('colornames.txt', delimiter=" ", skiprows=60, header=None)
 colornames_df.columns = ['IDX', 'NAME', 'rgb', 'R', 'G', 'B', 'hex', 'HEX', 'hsv', 'h', 's', 'v', 'xyz', 'X', 'Y', 'Z',
@@ -20,18 +19,19 @@ colornames_df.columns = ['IDX', 'NAME', 'rgb', 'R', 'G', 'B', 'hex', 'HEX', 'hsv
 colornames_df['WORD_TAGS'] = colornames_df['WORD_TAGS'].apply(lambda x: x.split(":"))
 
 
-def words_to_color(input=str):
+def words_to_color(text_input=str):
     """
     Takes a string as input.
     Tokenizes the string.
     Does some other unhelpful stuff.
     """
-    words = word_tokenize(input)
+    words = word_tokenize(text_input)
     similarity_df = pd.DataFrame(colornames_df)
-    similarity_df['similarity'] = similarity_df['WORD_TAGS'].apply(lambda x: len(set(words) & set(x)) / float(len(set(words) | set(x))) * 100)
-    return similarity_df.sort_values(by='similarity').iloc[-1].NAME, \
-           similarity_df.sort_values(by='similarity').iloc[-1].WORD_TAGS, \
-           similarity_df.sort_values(by='similarity').iloc[-1].similarity
+    similarity_df['similarity'] = similarity_df['WORD_TAGS'].apply(
+        lambda x: len(set(words) & set(x)) / float(len(set(words) | set(x))) * 100)
+    return (similarity_df.sort_values(by='similarity').iloc[-1].NAME,
+            similarity_df.sort_values(by='similarity').iloc[-1].WORD_TAGS,
+            similarity_df.sort_values(by='similarity').iloc[-1].similarity)
 
 
 def look_up_color(token=str):
@@ -106,7 +106,7 @@ def brighten_color(hex_str=str, brightening_value=.5):
 
 def show_color(hex_str=str):
     """
-    Takes a properly-formattend hex color code as input, 
+    Takes a properly-formatted hex color code as input,
     and opens a window displaying the color. 
     """
     hex_str = hex_str.lstrip('#')
@@ -115,26 +115,42 @@ def show_color(hex_str=str):
     gui.configure(bg=f"#{hex_str}")
     gui.mainloop()
 
+
 def measure_hsv_distance(hsv1=tuple, hsv2=tuple):
     """
     Read this: https://stackoverflow.com/questions/35113979/calculate-distance-between-colors-in-hsv-space
     """
-    dh = min(abs(hsv1[0]-hsv2[0]), 360-abs(hsv1[0]-hsv2[0])) / 180
-    ds = abs(hsv1[1]-hsv2[1])
-    dv = abs(hsv1[2]-hsv2[2]) / 255
-    distance = sqrt(dh**2 + ds**2 + dv**2)
+    h1, s1, v1 = hsv1
+    h2, s2, v2 = hsv2
+    distance = ((sin(h1) * s1 * v1 - sin(h2) * s2 * v2) ** 2
+                + (cos(h1) * s1 * v1 - cos(h2) * s2 * v2) ** 2
+                + (v1 - v2) ** 2)
     return distance
 
-def fix_colorsys_hsv(colorsys_hsv=tuple):
+
+def colorsys_hsv_to_hsv360(colorsys_hsv=tuple):
     """
     Takes an HSV triplet as provided by colorsys, and converts it to match the 
     notation used in colornames.txt
     """
-    h = colorsys_hsv[0]*360
-    s = colorsys_hsv[1]*100
-    v = (colorsys_hsv[2]/255) * 100
-    corrected_hsv = (h,s,v)
+    h = colorsys_hsv[0] * 360
+    s = colorsys_hsv[1] * 100
+    v = (colorsys_hsv[2] / 255) * 100
+    corrected_hsv = (h, s, v)
     return corrected_hsv
+
+
+def hsv360_to_hsvdistance(hsv360=tuple):
+    """
+    Takes an HSV triplet as provided by colorsys, and converts it to match the
+    notation used in colornames.txt
+    """
+    h = (hsv360[0] / 360) * (2 * pi)
+    s = hsv360[1] / 100
+    v = hsv360[2] / 100
+    corrected_hsv = (h, s, v)
+    return corrected_hsv
+
 
 if __name__ == '__main__':
     """
@@ -144,43 +160,18 @@ if __name__ == '__main__':
     show_color(darken_color(sample_hex))
     show_color(brighten_color(sample_hex))
     """
-    color_name1 = 'red'
-    color_name2 = 'orange'
+    color_name1 = 'blood red'
+    color_name2 = 'deep red'
     show_color(look_up_color(color_name1)[-1])
     show_color(look_up_color(color_name2)[-1])
     rgb1 = hex_to_rgb(look_up_color(color_name1)[-1])
     rgb2 = hex_to_rgb(look_up_color(color_name2)[-1])
     hsv1 = colorsys.rgb_to_hsv(rgb1[0], rgb1[1], rgb1[2])
     hsv2 = colorsys.rgb_to_hsv(rgb2[0], rgb2[1], rgb2[2])
-    hsv1 = fix_colorsys_hsv(hsv1)
-    hsv2 = fix_colorsys_hsv(hsv2)
-
+    hsv1 = colorsys_hsv_to_hsv360(hsv1)
+    hsv2 = colorsys_hsv_to_hsv360(hsv2)
+    hsv1 = hsv360_to_hsvdistance(hsv1)
+    hsv2 = hsv360_to_hsvdistance(hsv2)
 
     print(hsv1, hsv2)
     print(measure_hsv_distance(hsv1, hsv2))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
