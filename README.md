@@ -9,6 +9,8 @@ This repo will be used to explore methods for converting text strings into color
   - interactive color code tool: https://www.hexcolortool.com/#3cec71
   - NLTK Information extraction chapter: http://www.nltk.org/book/ch07.html
   - colorsys source code: https://github.com/python/cpython/blob/3.9/Lib/colorsys.py
+  - webcolors source code: https://github.com/ubernostrum/webcolors/blob/trunk/src/webcolors.py
+    - Note: while I'm not using webcolors in this program, I'm looking at their hex conversion algorithms to better understand the concept and see how it gets implemented.
   - explanation of calculating distance in hsv space: https://stackoverflow.com/questions/35113979/calculate-distance-between-colors-in-hsv-space
 
 ## Notes:
