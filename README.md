@@ -98,6 +98,7 @@ RGB: (153, 0, 0)
 HSV: (0.0, 1.0, 153)
 ```
 #### Example 1.3: Create a ColorController object using an RGB triplet, and print out its properties.
+You can also pass a 3-tuple whose values are each contained in range(0,256) to the rgb property. For example:
 ```python
 c = ColorController(rgb=(10, 255, 230))
 
@@ -107,6 +108,7 @@ print(f"Name: {c.name}",
       f"HSV: {c.hsv}",
       sep='\n')
 ```
+Outputs:
 ```
 Name: ['bright_aqua']
 Hex Code: #0affe6
@@ -114,7 +116,35 @@ RGB: (10, 255, 230)
 HSV: (0.4829931972789116, 0.9607843137254902, 255)
 ```
 #### Example 1.4: Create a ColorController object using an HSV triplet, and print out its properties.
+Lastly, you can also pass a 3-tuple whose first two values are a floating point number between 0 and 1 inclusive, and whose third value falls in range(0, 256):
+```python
+c = ColorController(hsv=(0.25, 1, 255))
 
+print(f"Name: {c.name}",
+      f"Hex Code: {c.hex_code}",
+      f"RGB: {c.rgb}",
+      f"HSV: {c.hsv}",
+      sep='\n')
+```
+Outputs:
+```
+Name: ['luminous_vivid_chartreuse_green', 'medium_spring_green', 'chartreuse']
+Hex Code: #80ff00
+RGB: (128, 255, 0)
+HSV: (0.25, 1, 255)
+```
+
+NOTE: While this is the HSV value format that comes included with the colorsys python standard library, it doesn't seem to be a very common format elsewhere. 
+To match formats used in other locations, see the following functions:
+```python
+def colorsys_hsv_to_hsv360(colorsys_hsv=tuple):
+    """Takes an HSV triplet as provided by colorsys, and converts it to match the
+    notation used in colornames.txt"""
+
+def hsv360_to_hsvdistance(hsv360=tuple):
+    """Takes an HSV triplet as provided by colorsys, and converts it to match the
+    notation used in the function for calculating distance between colors."""  
+```
 ### 2. Modify a color, and keep track of changes to the color in all available formats.
 ### 3. Show a color. 
 ### 4. Invert a color.
