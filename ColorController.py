@@ -280,9 +280,3 @@ class ColorController:
         self.hsv = (h, s, v)
 
 
-a = ColorController(name='yellow')
-a.show_color()
-a.lighten_color()
-a.show_color()
-a.brighten_color(1)
-a.show_color()
