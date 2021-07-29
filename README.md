@@ -142,7 +142,7 @@ def colorsys_hsv_to_hsv360(colorsys_hsv=tuple):
     notation used in colornames.txt"""
 
 def hsv360_to_hsvdistance(hsv360=tuple):
-    """Takes an HSV triplet as provided by colorsys, and converts it to match the
+    """Takes an HSV triplet as provided by colorsys_hsv_to_hsv360(), and converts it to match the
     notation used in the function for calculating distance between colors."""  
 ```
 ### 2. Modify a color, and keep track of changes to the color in all available formats.

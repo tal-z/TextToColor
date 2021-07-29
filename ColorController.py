@@ -63,7 +63,7 @@ def colorsys_hsv_to_hsv360(colorsys_hsv=tuple):
 
 def hsv360_to_hsvdistance(hsv360=tuple):
     """
-    Takes an HSV triplet as provided by colorsys, and converts it to match the
+    Takes an HSV triplet as provided by colorsys_hsv_to_hsv360(), and converts it to match the
     notation used in the function for calculating distance between colors.
     """
     h = (hsv360[0] / 360) * (2 * pi)
