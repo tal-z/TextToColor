@@ -193,6 +193,10 @@ if __name__ == '__main__':
     print(hsv1, hsv2)
     print(measure_hsv_distance(hsv1, hsv2))
     '''
-    sample_hex = '123456'
-    print(find_closest_color_name(sample_hex))
-    show_color(sample_hex)
+    text = "strawberries are very good to eat"
+    name, word_tags, similarity = words_to_color(text)
+    print(name, word_tags, similarity, sep='\n')
+    from ColorController import ColorController
+    color = ColorController(name=name)
+    print(color.name, color.hex_code)
+    color.show_color()
