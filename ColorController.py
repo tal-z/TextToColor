@@ -64,7 +64,7 @@ def colorsys_hsv_to_hsv360(colorsys_hsv=tuple):
 def hsv360_to_hsvdistance(hsv360=tuple):
     """
     Takes an HSV triplet as provided by colorsys, and converts it to match the
-    notation used in colornames.txt
+    notation used in the function for calculating distance between colors.
     """
     h = (hsv360[0] / 360) * (2 * pi)
     s = hsv360[1] / 100
@@ -98,7 +98,8 @@ def query_hex_code(token=str):
 
 
 def find_closest_color_name(hex_str=str):
-    """Calculates distance between a given color hex code and every color in the colornames.txt database,
+    """
+    Calculates distance between a given color hex code and every color in the colornames.txt database,
     and returns the a list of the closest color names.
     Only returns multiple results if there is a tie for the closest color.
     """
@@ -232,7 +233,6 @@ class ColorController:
         Takes a properly-formatted hex color code as input,
         and opens a window displaying the color.
         """
-
         hc = '#' + unlist(self.hex_code).lstrip('#')
         r_text, g_text, b_text = hex_to_rgb(hc)
         r_text, g_text, b_text = invert_rgb(r_text, g_text, b_text)
@@ -243,7 +243,6 @@ class ColorController:
         text.insert(INSERT, f' Color Name(s): {self.name}\n')
         text.insert(INSERT, f' RGB Triplet: {self.rgb}\n')
         text.insert(INSERT, f' HSV Triplet: {self.hsv}')
-
         text.pack()
         gui.geometry("400x200")
         gui.mainloop()
