@@ -148,7 +148,49 @@ def hsv360_to_hsvdistance(hsv360=tuple):
 ### 2. Modify a color, and keep track of changes to the color in all available formats.
 ### 3. Show a color. 
 ### 4. Invert a color.
+### 5. Access a rich set of color values and color names (prepared by Martin Krzywinski), conveniently stored in a Pandas DataFrame.
+Example:
+```python
+from ColorController import colors_df
 
+print(colors_df.iloc[5000])
+```
+Outputs:
+```
+IDX                                                                  5000
+NAME                                                    light_apple_green
+rgb                                                                   rgb
+R                                                                     220
+G                                                                     231
+B                                                                     139
+hex                                                                   hex
+HEX                                                               #DCE78B
+hsv                                                                   hsv
+h                                                                      67
+s                                                                      40
+v                                                                      91
+xyz                                                                   xyz
+X                                                                    0.63
+Y                                                                    0.74
+Z                                                                    0.35
+lab                                                                   lab
+L                                                                      89
+A                                                                     -17
+B                                                                      44
+lch                                                                   lch
+L                                                                      89
+C                                                                      47
+H                                                                     112
+cmyk                                                                 cmyk
+C                                                                       4
+M                                                                       0
+Y                                                                      36
+K                                                                       9
+NEIGHBOUR_STR           PMS586[775][226,229,132](3.6):hypnotic[4592][2...
+NUM_NEIGHBOURS_MAXDE                                                    4
+WORD_TAGS               [light, PMS586, hypnotic, jonquil, green, lime...
+Name: 5000, dtype: object
+```
 
 ## Known Bugs:
   - Although I return multiple hex codes given a color name, 
