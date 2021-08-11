@@ -96,8 +96,7 @@ def query_hex_code(token=str):
     else:
         raise KeyError("Color name not found in colornames.txt")
 
-
-def find_closest_color_name(hex_str=str):
+def find_closest_color_names(hex_str=str):
     """
     Calculates distance between a given color hex code and every color in the colornames.txt database,
     and returns the a list of the closest color names.
@@ -151,17 +150,17 @@ class ColorController:
         if self._name:
             return self._name
         elif self._hex_code:
-            self._name = find_closest_color_name(self._hex_code)
+            self._name = find_closest_color_names(self._hex_code)
             return self._name
         elif self._rgb:
             r, g, b = self._rgb
             hex_code = rgb_to_hex(r, g, b)
-            self._name = find_closest_color_name(hex_code)
+            self._name = find_closest_color_names(hex_code)
             return self._name
         elif self._hsv:
             h, s, v = self._hsv
             r, g, b = colorsys.hsv_to_rgb(h, s, v)
-            self._name = find_closest_color_name(rgb_to_hex(r, g, b))
+            self._name = find_closest_color_names(rgb_to_hex(r, g, b))
             return self._name
 
     @name.setter
@@ -193,7 +192,7 @@ class ColorController:
     @hex_code.setter
     def hex_code(self, new_hex_code):
         self._hex_code = new_hex_code
-        self._name = find_closest_color_name(new_hex_code)
+        self._name = find_closest_color_names(new_hex_code)
         self._rgb = hex_to_rgb(new_hex_code)
         r, g, b = self._rgb
         self._hsv = colorsys.rgb_to_hsv(r, g, b)
@@ -217,7 +216,7 @@ class ColorController:
     def rgb(self, new_rgb):
         self._rgb = new_rgb
         r, g, b = self._rgb
-        self._name = find_closest_color_name(rgb_to_hex(r, g, b))
+        self._name = find_closest_color_names(rgb_to_hex(r, g, b))
         self._hex_code = rgb_to_hex(r, g, b)
         self._hsv = colorsys.rgb_to_hsv(r, g, b)
 
@@ -243,7 +242,7 @@ class ColorController:
         self._hsv = new_hsv
         h, s, v = new_hsv
         r, g, b = colorsys.hsv_to_rgb(h, s, v)
-        self._name = find_closest_color_name(rgb_to_hex(r, g, b))
+        self._name = find_closest_color_names(rgb_to_hex(r, g, b))
         self._hex_code = rgb_to_hex(r, g, b)
         self._rgb = colorsys.hsv_to_rgb(h, s, v)
 
