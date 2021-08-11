@@ -35,7 +35,7 @@ def unlist(data):
 
 def rgb_to_hex(red, green, blue):
     """
-    Return color as #rrggbb for the given color values.
+    Return color as #rrggbb for the given color values. Does not handle unbounded values (bigger than 255).
     """
     return '#%02x%02x%02x' % (int(round(red)), int(round(green)), int(round(blue)))
 
@@ -121,11 +121,30 @@ def find_closest_color_name(hex_str=str):
 
 class ColorController:
 
-    def __init__(self, name=None, hex_code=None, rgb=None, hsv=None):
-        self._name = name
-        self._hex_code = hex_code
-        self._rgb = rgb
-        self._hsv = hsv
+    def __init__(self, hex_code=None, rgb=None, hsv=None, name=None):
+        """Initialize class with one and only one of four optional attributes. If multiple attributes are passed,
+        only one is used. The order of use is hex_code, rgb, hsv, name. You should only pass one of these arguments upon
+        initializing a new ColorController object."""
+        if hex_code:
+            self._hex_code = hex_code
+            self._rgb = None
+            self._hsv = None
+            self._name = None
+        elif rgb:
+            self._hex_code = None
+            self._rgb = rgb
+            self._hsv = None
+            self._name = None
+        elif hsv:
+            self._hex_code = None
+            self._rgb = None
+            self._hsv = hsv
+            self._name = None
+        elif name:
+            self._hex_code = None
+            self._rgb = None
+            self._hsv = None
+            self._name = name
 
     @property
     def name(self):
