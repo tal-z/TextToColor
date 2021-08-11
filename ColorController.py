@@ -87,7 +87,7 @@ def measure_hsv_distance(hsv1=tuple, hsv2=tuple):
 
 def query_hex_code(token=str):
     """
-    Takes a token, and checks whether it is present in a pre-defined dictionary of color names.
+    Takes a color name, and checks whether it is present in a pre-defined dictionary of color names.
     If the token is found, it returns the full range of hex codes that match the color name.
     """
     token = token.replace(" ", "_").lower()
@@ -95,6 +95,7 @@ def query_hex_code(token=str):
         return list(colors_df.query(f'NAME=="{token.lower()}"').HEX)
     else:
         raise KeyError("Color name not found in colornames.txt")
+
 
 def find_closest_color_names(hex_str=str):
     """
@@ -126,23 +127,31 @@ class ColorController:
         initializing a new ColorController object."""
         if hex_code:
             self._hex_code = hex_code
-            self._rgb = None
-            self._hsv = None
-            self._name = None
+            self._rgb = hex_to_rgb(hex_code)
+            r, g, b = self._rgb
+            self._hsv = colorsys.rgb_to_hsv(r, g, b)
+            self._name = find_closest_color_names(hex_code)
         elif rgb:
-            self._hex_code = None
+            r, g, b = rgb
+            self._hex_code = rgb_to_hex(r, g, b)
             self._rgb = rgb
-            self._hsv = None
-            self._name = None
+            self._hsv = colorsys.rgb_to_hsv(r, g, b)
+            self._name = find_closest_color_names(self._hex_code)
         elif hsv:
-            self._hex_code = None
-            self._rgb = None
+            h, s, v = hsv
+            self._rgb = colorsys.hsv_to_rgb(h, s, v)
+            r, g, b = self._rgb
+            self._hex_code = rgb_to_hex(r, g, b)
             self._hsv = hsv
-            self._name = None
+            self._name = find_closest_color_names(self._hex_code)
         elif name:
-            self._hex_code = None
-            self._rgb = None
-            self._hsv = None
+            self._hex_code = query_hex_code(name)
+            self._rgb = [hex_to_rgb(code) for code in self._hex_code]
+            hsv_list = []
+            for color in self._rgb:
+                r, g, b = color
+                hsv_list.append(colorsys.rgb_to_hsv(r, g, b))
+            self._hsv = hsv_list
             self._name = name
 
     @property
@@ -168,9 +177,12 @@ class ColorController:
         print("name setter")
         self._name = new_name
         self._hex_code = query_hex_code(new_name)
-        self._rgb = hex_to_rgb(self._hex_code[-1])
-        r, g, b = self._rgb
-        self._hsv = colorsys.rgb_to_hsv(r, g, b)
+        self._rgb = [hex_to_rgb(code) for code in self._hex_code]
+        hsv_list = []
+        for color in self._rgb:
+            r, g, b = self._rgb
+            hsv_list.append(colorsys.rgb_to_hsv(r, g, b))
+        self._hsv = hsv_list
 
     @property
     def hex_code(self):
@@ -257,12 +269,11 @@ class ColorController:
         text_color = rgb_to_hex(r_text, g_text, b_text)
         gui = Tk(className=f' Hex Color Code: {unlist(hc)}; Color Name: {unlist(self.name)} ')
         text = Text(gui, bg=f"{hc}", fg=text_color)
-        text.insert(INSERT, f' Hex Color Code: {hc}\n')
+        text.insert(INSERT, f' Hex Color Code: {self._hex_code}\n\n')
+        text.insert(INSERT, f' RGB Triplet: {self.rgb}\n\n')
+        text.insert(INSERT, f' HSV Triplet: {self.hsv}\n\n')
         text.insert(INSERT, f' Color Name(s): {self.name}\n')
-        text.insert(INSERT, f' RGB Triplet: {self.rgb}\n')
-        text.insert(INSERT, f' HSV Triplet: {self.hsv}')
         text.pack()
-        gui.geometry("400x200")
         gui.mainloop()
 
     def darken_color(self, darkening_value=.25):
@@ -271,7 +282,7 @@ class ColorController:
         Takes "darkening_value" as an optional input. Darkening value is a float between 0 and 1.
         """
         print("darkening color")
-        h, s, v = self.hsv
+        h, s, v = unlist(self.hsv)
         v = v * (1 - darkening_value)
         self.hsv = (h, s, v)
 
@@ -281,7 +292,7 @@ class ColorController:
         Takes "lightening_value" as an optional input. Lightening value is a float between 0 and 1.
         """
         print("lightening color")
-        h, s, v = self.hsv
+        h, s, v = unlist(self.hsv)
         s = s * (1 - lightening_value)
         self.hsv = (h, s, v)
 
@@ -291,9 +302,7 @@ class ColorController:
         Takes "brightening_value" as an optional input. Brightening value is a float between 0 and 1.
         """
         print("brightening color")
-        h, s, v = self.hsv
+        h, s, v = unlist(self.hsv)
         s = min((s + ((1 - s) * brightening_value)), 1)
         v = min((v * (1 + brightening_value), 255))
         self.hsv = (h, s, v)
-
-
