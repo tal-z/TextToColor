@@ -58,6 +58,16 @@ Because color is thought to be a culturally relative phenomenon, I have chosen t
 You will notice a similar phenomenon occurs for color names when you set a color using hex code, RGB, or HSV. 
 This is because there are sometimes many names that all describe the same color. 
 
+#### Example 1.2: Show a color.
+We've had a lot of talk about colors so far, but we haven't even seen any colors yet! Let's solve that now, and enough of these lengthy print statements:
+```python
+color.hex_code ='#104bca'
+
+color.show_color()
+```
+
+![absolute_zero](/ColorController/readmepics/absolute_zero.PNG "mouseovertext")
+
 That said, the ColorController object is biased toward whatever you, the user, set it to be. 
 If you explicitly set a name, then that will be the singular name of your object.
 Similarly, if you explicitly set a hex code, then that will be the value of your hex code. 
@@ -196,6 +206,9 @@ Name: 5000, dtype: object
 
 ## Known Bugs:
   - I don't know of any right now, but I'm sure they exist!
+
+## Ideas
+  - Allow user to enter a listindex as an argument to show_color(), so that they can select what to show if there are multiple options
 
 ## Resources:
   - What is color?: https://www.crayola.com/for-educators/resources-landing/articles/color-what-is-color.aspx

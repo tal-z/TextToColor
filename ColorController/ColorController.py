@@ -156,8 +156,15 @@ class ColorController:
 
     @property
     def name(self):
+        """
+        Because I want to auto-update values as they are called, I have selected to use "getters and setters,"
+        implemented in Python as class properties. This is the "getter" method, and it's job is to return
+        the .name property. It works by  checking to see if there is a name set in the ._name attribute,
+        and returns the name if there is. Because name is always set upon init, the check is redundant.
+        """
         if self._name:
             return self._name
+        """
         elif self._hex_code:
             self._name = find_closest_color_names(self._hex_code)
             return self._name
@@ -171,9 +178,14 @@ class ColorController:
             r, g, b = colorsys.hsv_to_rgb(h, s, v)
             self._name = find_closest_color_names(rgb_to_hex(r, g, b))
             return self._name
-
+        """
     @name.setter
     def name(self, new_name):
+        """
+        The decorator here is fairly clear that this is the "setter" method for the name property. When an instance of
+        a ColorController object is provided with a new name property, this bit of code is responsible for updating all
+        of the other properties. This is where the magic happens.
+        """
         print("name setter")
         self._name = new_name
         self._hex_code = query_hex_code(new_name)
@@ -186,8 +198,11 @@ class ColorController:
 
     @property
     def hex_code(self):
+        """This is the hex_code getter.
+        It works the same way as the name getter, but on hex_code."""
         if self._hex_code:
             return self._hex_code
+        """
         elif self._rgb:
             r, g, b = self._rgb
             self._hex_code = rgb_to_hex(r, g, b)
@@ -200,9 +215,13 @@ class ColorController:
         elif self._name:
             self._hex_code = query_hex_code(self._name)[-1]
             return self._hex_code
+        """
 
     @hex_code.setter
     def hex_code(self, new_hex_code):
+        """
+        This is the hex_code setter. It also works the same as the name_setter.
+        """
         self._hex_code = new_hex_code
         self._name = find_closest_color_names(new_hex_code)
         self._rgb = hex_to_rgb(new_hex_code)
@@ -211,8 +230,10 @@ class ColorController:
 
     @property
     def rgb(self):
+        """This is the rgb getter."""
         if self._rgb:
             return self._rgb
+        """
         elif self._hex_code:
             self._rgb = hex_to_rgb(self._hex_code)
             return self._rgb
@@ -223,9 +244,11 @@ class ColorController:
         elif self._name:
             self._rgb = hex_to_rgb(unlist(query_hex_code(unlist(self._name))))
             return self._rgb
+        """
 
     @rgb.setter
     def rgb(self, new_rgb):
+        """This is the rgb setter."""
         self._rgb = new_rgb
         r, g, b = self._rgb
         self._name = find_closest_color_names(rgb_to_hex(r, g, b))
@@ -234,8 +257,10 @@ class ColorController:
 
     @property
     def hsv(self):
+        """This is the hsv getter."""
         if self._hsv:
             return self._hsv
+        """
         elif self._hex_code:
             r, g, b = hex_to_rgb(self._hex_code)
             self._hsv = colorsys.rgb_to_hsv(r, g, b)
@@ -248,9 +273,13 @@ class ColorController:
             r, g, b = hex_to_rgb(unlist(query_hex_code(unlist(self._name))))
             self._hsv = colorsys.rgb_to_hsv(r, g, b)
             return self._hsv
+        """
 
     @hsv.setter
     def hsv(self, new_hsv):
+        """This is the hsv setter. It has one extra step, because it is necessary
+        to unpack the .hsv 3-tuple in order to convert back to rgb.
+        """
         self._hsv = new_hsv
         h, s, v = new_hsv
         r, g, b = colorsys.hsv_to_rgb(h, s, v)
