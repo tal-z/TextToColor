@@ -145,7 +145,7 @@ def hsv360_to_hsvdistance(hsv360=tuple):
     """Takes an HSV triplet as provided by colorsys_hsv_to_hsv360(), and converts it to match the
     notation used in the function for calculating distance between colors."""  
 ```
-### 2. Modify a color, and keep track of changes to the color in all available formats.
+### 2. Modify a color using simple, convenient methods.
 ### 3. Show a color. 
 ### 4. Invert a color.
 ### 5. Access a rich set of color values and color names (prepared by Martin Krzywinski), conveniently stored in a Pandas DataFrame.
@@ -193,11 +193,7 @@ Name: 5000, dtype: object
 ```
 
 ## Known Bugs:
-  - Although I return multiple hex codes given a color name, 
-    I'm only returning one rgb and hsv. 
-    I should always have the same number of hex, rgb, and hsv values. 
-    NOTE: Where there are discrepancies in the number of hex codes and rgb/hsv values, 
-    the rgb and hsv always relate to the last list item.
+  - I don't know of any right now, but I'm sure they exist!
 
 ## Resources:
   - What is color?: https://www.crayola.com/for-educators/resources-landing/articles/color-what-is-color.aspx
