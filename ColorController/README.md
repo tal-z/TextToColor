@@ -82,6 +82,7 @@ color.show_color()
 ```
 Shows:
 
+
 ![['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']](https://raw.githubusercontent.com/tal-z/TextToColor/main/ColorController/readmepics/crimson_red.PNG?token=AQGLFPHBHP2XSZUP52EQHH3BCWULS "['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']")
 
 
