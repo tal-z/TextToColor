@@ -2,9 +2,9 @@ import colorsys
 from math import sin, cos, pi
 
 import pandas as pd
-from tkinter import Tk, Text, INSERT, END
+from tkinter import Tk, Text, INSERT
 
-colors_df = pd.read_csv('colornames.txt', delimiter=" ", skiprows=60, header=None)
+colors_df = pd.read_csv('ColorController/colornames.txt', delimiter=" ", skiprows=60, header=None)
 colors_df.columns = ['IDX', 'NAME',
                      'rgb', 'R', 'G', 'B',
                      'hex', 'HEX',

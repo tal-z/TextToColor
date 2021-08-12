@@ -16,15 +16,16 @@ See the colornames.txt document contained herein, with enormous thanks to
 [Martin Krzywinski](http://mkweb.bcgsc.ca/colornames). 
 
 The following code:
+
 ```python
-from ColorController import ColorController
+from ColorController.ColorController import ColorController
 
 color = ColorController(name='yellow')
 
-print(f"Name: {color.name}", 
-      f"Hex Code: {color.hex_code}", 
-      f"RGB: {color.rgb}", 
-      f"HSV: {color.hsv}", 
+print(f"Name: {color.name}",
+      f"Hex Code: {color.hex_code}",
+      f"RGB: {color.rgb}",
+      f"HSV: {color.hsv}",
       sep='\n')
 ```
 outputs:
@@ -150,8 +151,9 @@ def hsv360_to_hsvdistance(hsv360=tuple):
 ### 4. Invert a color.
 ### 5. Access a rich set of color values and color names (prepared by Martin Krzywinski), conveniently stored in a Pandas DataFrame.
 Example:
+
 ```python
-from ColorController import colors_df
+from ColorController.ColorController import colors_df
 
 print(colors_df.iloc[5000])
 ```
