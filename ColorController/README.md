@@ -74,23 +74,17 @@ Similarly, if you explicitly set a hex code, then that will be the value of your
 If you leave  a leading # off of your hex code, 
 then everything will still work, but that will be the hex code value. For example...
 
-#### Example 1.2: Create a ColorController object using a hex code, and print out its properties.
+#### Example 1.3: Create a ColorController object using a hex code.
 ```python
 color = ColorController(hex_code='#990000')
 
-print(f"Name: {color.name}",
-      f"Hex Code: {color.hex_code}",
-      f"RGB: {color.rgb}",
-      f"HSV: {color.hsv}",
-      sep='\n')
+color.show_color()
 ```
-Outputs:
-```
-Name: ['stizza', 'usc_cardinal', 'ou_crimson_red', 'crimson_red']
-Hex Code: #990000
-RGB: (153, 0, 0)
-HSV: (0.0, 1.0, 153)
-```
+Shows:
+
+[IMAGE GOES HERE. HERE ARE THE NAMEs: ['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']]
+
+
 While:
 ```python
 color = ColorController(hex_code='990000')
