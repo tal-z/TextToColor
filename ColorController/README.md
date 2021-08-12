@@ -66,6 +66,7 @@ color.hex_code ='#104bca'
 color.show_color()
 ```
 Shows:
+
 ![absolute_zero](https://raw.githubusercontent.com/tal-z/TextToColor/main/ColorController/readmepics/absolute_zero.PNG?token=AQGLFPFLS7MHKOCFWP7V6RDBCWUVA "absolute_zero.PNG")
 
 That said, the ColorController object is biased toward whatever you, the user, set it to be. 
