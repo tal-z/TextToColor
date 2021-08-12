@@ -66,7 +66,7 @@ color.hex_code ='#104bca'
 color.show_color()
 ```
 
-![absolute_zero](/ColorController/readmepics/absolute_zero.PNG "mouseovertext")
+![absolute_zero](https://raw.githubusercontent.com/tal-z/TextToColor/main/ColorController/readmepics/absolute_zero.PNG?token=AQGLFPBN3A44NOEJLXM7UF3BCWTQ2 "absolute_zero.PNG")
 
 That said, the ColorController object is biased toward whatever you, the user, set it to be. 
 If you explicitly set a name, then that will be the singular name of your object.
