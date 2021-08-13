@@ -141,10 +141,18 @@ You can darken a color using the darken_color() method. For example:
 ```python
 from ColorController import ColorController
 
-color = ColorController(hex_code='#244628')
+color = ColorController(name='parsley')
+
+color.show_color()
+
+color.darken_color()
 
 color.show_color()
 ```
+Will show the following in series:
+
+![[parsley]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/parsley.PNG?raw=true "parsley")
+
 ![[peppermint_green]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/peppermint_green.PNG?raw=true "peppermint_green")
 
 You can also pass in a darkening_value between zero and one, to set the percent darker you'd like to go.
