@@ -152,7 +152,6 @@ color.show_color()
 Will show the following in series:
 
 ![[parsley]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/parsley.PNG?raw=true "parsley")
-
 ![[peppermint_green]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/peppermint_green.PNG?raw=true "peppermint_green")
 
 You can also pass in a darkening_value between zero and one, to set the percent darker you'd like to go. For instance:
