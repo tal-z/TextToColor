@@ -50,8 +50,8 @@ You will see that all properties have updated:
 ```
 Name: blue
 Hex Code: ['#00008B', '#0000CD', '#0000EE', '#0000FF', '#0087BD', '#0093AF', '#0018A8', '#0247FE', '#0343DF', '#1F75FE', '#2242C7', '#333399']
-RGB: (51, 51, 153)
-HSV: (0.6666666666666666, 0.6666666666666666, 153)
+RGB: [(0, 0, 139), (0, 0, 205), (0, 0, 238), (0, 0, 255), (0, 135, 189), (0, 147, 175), (0, 24, 168), (2, 71, 254), (3, 67, 223), (31, 117, 254), (34, 66, 199), (51, 51, 153)]
+HSV: [(0.6666666666666666, 1.0, 139), (0.6666666666666666, 1.0, 205), (0.6666666666666666, 1.0, 238), (0.6666666666666666, 1.0, 255), (0.5476190476190476, 1.0, 189), (0.5266666666666667, 1.0, 175), (0.6428571428571428, 1.0, 168), (0.621031746031746, 0.9921259842519685, 254), (0.6181818181818182, 0.9865470852017937, 223), (0.6023916292974589, 0.8779527559055118, 254), (0.6343434343434343, 0.8291457286432161, 199), (0.6666666666666666, 0.6666666666666666, 153)]
 ```
 Notably, the colornames.txt file has numerous entries that all share the name "blue." This is true of many colors.
 Because color is thought to be a culturally relative phenomenon, I have chosen to return all hex codes that match a given name. 
@@ -92,19 +92,12 @@ While:
 ```python
 color = ColorController(hex_code='990000')
 
-print(f"Name: {color.name}",
-      f"Hex Code: {color.hex_code}",
-      f"RGB: {color.rgb}",
-      f"HSV: {color.hsv}",
-      sep='\n')
+color.show_color()
 ```
-Also outputs:
-```
-Name: ['stizza', 'usc_cardinal', 'ou_crimson_red', 'crimson_red']
-Hex Code: 990000
-RGB: (153, 0, 0)
-HSV: (0.0, 1.0, 153)
-```
+Shows very similar results:
+![['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/crimson_red2.PNG?raw=true "['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']")
+
+
 #### Example 1.3: Create a ColorController object using an RGB triplet, and print out its properties.
 You can also pass a 3-tuple whose values are each contained in range(0,256) to the rgb property. For example:
 ```python
