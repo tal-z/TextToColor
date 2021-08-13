@@ -67,7 +67,7 @@ color.show_color()
 ```
 Shows:
 
-![absolute_zero](https://raw.githubusercontent.com/tal-z/TextToColor/main/ColorController/readmepics/absolute_zero.PNG?token=AQGLFPFLS7MHKOCFWP7V6RDBCWUVA "absolute_zero.PNG")
+![absolute_zero](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/absolute_zero.PNG?raw=true "absolute_zero.PNG")
 
 That said, the ColorController object is biased toward whatever you, the user, set it to be. 
 If you explicitly set a name, then that will be the singular name of your object.
