@@ -68,7 +68,7 @@ color.show_color()
 ```
 Shows:
 
-![absolute_zero](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/absolute_zero.PNG?raw=true "absolute_zero.PNG")
+![absolute_zero](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/absolute_zero.PNG?raw=true "absolute_zero")
 
 That said, the ColorController object is biased toward whatever you, the user, set it to be. 
 If you explicitly set a name, then that will be the singular name of your object.
@@ -104,19 +104,12 @@ You can also pass a 3-tuple whose values are each contained in range(0,256) to t
 ```python
 color = ColorController(rgb=(10, 255, 230))
 
-print(f"Name: {color.name}",
-      f"Hex Code: {color.hex_code}",
-      f"RGB: {color.rgb}",
-      f"HSV: {color.hsv}",
-      sep='\n')
+color.show_color()
 ```
-Outputs:
-```
-Name: ['bright_aqua']
-Hex Code: #0affe6
-RGB: (10, 255, 230)
-HSV: (0.4829931972789116, 0.9607843137254902, 255)
-```
+Shows:
+
+![[bright_aqua]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/crimson_red2.PNG?raw=true "bright_aqua")
+
 #### Example 1.4: Create a ColorController object using an HSV triplet, and print out its properties.
 Lastly, you can also pass a 3-tuple whose first two values are a floating point number between 0 and 1 inclusive, and whose third value falls in range(0, 256):
 ```python
