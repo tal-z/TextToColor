@@ -155,7 +155,21 @@ Will show the following in series:
 
 ![[peppermint_green]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/peppermint_green.PNG?raw=true "peppermint_green")
 
-You can also pass in a darkening_value between zero and one, to set the percent darker you'd like to go.
+You can also pass in a darkening_value between zero and one, to set the percent darker you'd like to go. For instance:
+```python
+color = ColorController(name='daffodil')
+
+color.show_color()
+
+color.darken_color(.3)
+
+color.show_color()
+```
+Shows the following in series:
+
+![[daffodil]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/daffodil.PNG?raw=true "daffodil")
+![[vomit]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/vomit.PNG?raw=true "vomit")
+
 
 #### Example 2.2: Lighten a color.
 #### Example 2.3: Brighten a color.
