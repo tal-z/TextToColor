@@ -108,7 +108,7 @@ color.show_color()
 ```
 Shows:
 
-![[bright_aqua]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/crimson_red2.PNG?raw=true "bright_aqua")
+![[bright_aqua]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/bright_aqua.PNG?raw=true "bright_aqua")
 
 #### Example 1.4: Create a ColorController object using an HSV triplet, and print out its properties.
 Lastly, you can also pass a 3-tuple whose first two values are a floating point number between 0 and 1 inclusive, and whose third value falls in range(0, 256):
