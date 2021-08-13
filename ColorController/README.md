@@ -62,13 +62,13 @@ This is because there are sometimes many names that all describe the same color.
 We've had a lot of talk about colors so far, but we haven't even seen any colors yet! 
 Let's solve that now, and do away with these lengthy print statements:
 ```python
-color.hex_code ='#104bca'
+color.hex_code ='##ffbff9'
 
 color.show_color()
 ```
 Shows:
 
-![absolute_zero](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/absolute_zero.PNG?raw=true "absolute_zero")
+![pale_orchid](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/pale_orchid.PNG?raw=true "pale_orchid")
 
 That said, the ColorController object is biased toward whatever you, the user, set it to be. 
 If you explicitly set a name, then that will be the singular name of your object.
@@ -133,10 +133,14 @@ def hsv360_to_hsvdistance(hsv360=tuple):
     """Takes an HSV triplet as provided by colorsys_hsv_to_hsv360(), and converts it to match the
     notation used in the function for calculating distance between colors."""  
 ```
-### 2. Modify a color using simple, convenient methods.
-### 3. Show a color. 
-### 4. Invert a color.
-### 5. Access a rich set of color values and color names (prepared by Martin Krzywinski), conveniently stored in a Pandas DataFrame.
+
+
+## 2. Modify a color using simple, convenient methods.
+#### Example 2.1: Darken a color.
+#### Example 2.2: Lighten a color.
+#### Example 2.3: Brighten a color.
+### 3. Invert a color.
+### 4. Access a rich set of color values and color names (prepared by Martin Krzywinski), conveniently stored in a Pandas DataFrame.
 Example:
 
 ```python
