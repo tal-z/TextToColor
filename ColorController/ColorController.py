@@ -192,7 +192,7 @@ class ColorController:
         self._rgb = [hex_to_rgb(code) for code in self._hex_code]
         hsv_list = []
         for color in self._rgb:
-            r, g, b = self._rgb
+            r, g, b = color
             hsv_list.append(colorsys.rgb_to_hsv(r, g, b))
         self._hsv = hsv_list
 

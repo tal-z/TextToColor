@@ -20,7 +20,7 @@ The following code:
 ```python
 from ColorController.ColorController import ColorController
 
-color = ColorController(name='yellow')
+color = ColorController(name='hazel')
 
 print(f"Name: {color.name}",
       f"Hex Code: {color.hex_code}",
@@ -30,10 +30,10 @@ print(f"Name: {color.name}",
 ```
 outputs:
 ```
-Name: yellow
-Hex Code: #FFFF14
-RGB: (255, 255, 20)
-HSV: (0.16666666666666666, 0.9215686274509803, 255)
+Name: hazel
+Hex Code: ['#8E7618']
+RGB: [(142, 118, 24)]
+HSV: [(0.1327683615819209, 0.8309859154929577, 142)]
 ```
 Further, you can change all of the ColorController's properties by changing any one of them. 
 By example:
@@ -59,7 +59,8 @@ You will notice a similar phenomenon occurs for color names when you set a color
 This is because there are sometimes many names that all describe the same color. 
 
 #### Example 1.2: Show a color.
-We've had a lot of talk about colors so far, but we haven't even seen any colors yet! Let's solve that now, and enough of these lengthy print statements:
+We've had a lot of talk about colors so far, but we haven't even seen any colors yet! 
+Let's solve that now, and do away with these lengthy print statements:
 ```python
 color.hex_code ='#104bca'
 
