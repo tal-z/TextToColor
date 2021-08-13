@@ -8,7 +8,7 @@ content.
 
 Enough about that. Here are some things that you can do with ColorController:
 
-### 1. Encode color data in various formats.
+## 1. Encode color data in various formats.
 #### Example 1.1: Create a ColorController object using a familiar, english-language color name, and print out its properties.
 
 You can set a color using a very large library of color names. 
@@ -99,7 +99,7 @@ Shows very similar results:
 ![['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/crimson_red2.PNG?raw=true "['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']")
 
 
-#### Example 1.3: Create a ColorController object using an RGB triplet.
+#### Example 1.4: Create a ColorController object using an RGB triplet.
 You can also pass a 3-tuple whose values are each contained in range(0,256) to the rgb property. For example:
 ```python
 color = ColorController(rgb=(10, 255, 230))
@@ -110,7 +110,7 @@ Shows:
 
 ![[bright_aqua]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/bright_aqua.PNG?raw=true "bright_aqua")
 
-#### Example 1.4: Create a ColorController object using an HSV triplet, and print out its properties.
+#### Example 1.5: Create a ColorController object using an HSV triplet, and print out its properties.
 Lastly, you can also pass a 3-tuple whose first two values are a floating point number between 0 and 1 inclusive, and whose third value falls in range(0, 256):
 ```python
 color = ColorController(hsv=(0.25, 1, 255))
