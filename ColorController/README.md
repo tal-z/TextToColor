@@ -78,7 +78,7 @@ then everything will still work, but that will be the hex code value. For exampl
 
 #### Example 1.3: Create a ColorController object using a hex code.
 ```python
-color = ColorController(hex_code='#990000')
+color.hex_code = '#990000'
 
 color.show_color()
 ```
@@ -90,7 +90,7 @@ Shows:
 
 While:
 ```python
-color = ColorController(hex_code='990000')
+color.hex_code = '990000'
 
 color.show_color()
 ```
