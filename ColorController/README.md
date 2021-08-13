@@ -95,6 +95,7 @@ color = ColorController(hex_code='990000')
 color.show_color()
 ```
 Shows very similar results:
+
 ![['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/crimson_red2.PNG?raw=true "['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']")
 
 
