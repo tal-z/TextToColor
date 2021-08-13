@@ -137,6 +137,18 @@ def hsv360_to_hsvdistance(hsv360=tuple):
 
 ## 2. Modify a color using simple, convenient methods.
 #### Example 2.1: Darken a color.
+You can darken a color using the darken_color() method. For example:
+```python
+from ColorController import ColorController
+
+color = ColorController(hex_code='#244628')
+
+color.show_color()
+```
+![[peppermint_green]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/peppermint_green.PNG?raw=true "peppermint_green")
+
+You can also pass in a darkening_value between zero and one, to set the percent darker you'd like to go.
+
 #### Example 2.2: Lighten a color.
 #### Example 2.3: Brighten a color.
 ### 3. Invert a color.
