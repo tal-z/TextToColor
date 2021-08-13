@@ -99,7 +99,7 @@ Shows very similar results:
 ![['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/crimson_red2.PNG?raw=true "['crimson_red', 'stizza', 'ou_crimson_red', 'usc_cardinal']")
 
 
-#### Example 1.3: Create a ColorController object using an RGB triplet, and print out its properties.
+#### Example 1.3: Create a ColorController object using an RGB triplet.
 You can also pass a 3-tuple whose values are each contained in range(0,256) to the rgb property. For example:
 ```python
 color = ColorController(rgb=(10, 255, 230))
@@ -115,19 +115,12 @@ Lastly, you can also pass a 3-tuple whose first two values are a floating point 
 ```python
 color = ColorController(hsv=(0.25, 1, 255))
 
-print(f"Name: {color.name}",
-      f"Hex Code: {color.hex_code}",
-      f"RGB: {color.rgb}",
-      f"HSV: {color.hsv}",
-      sep='\n')
+color.show_color()
 ```
-Outputs:
-```
-Name: ['luminous_vivid_chartreuse_green', 'medium_spring_green', 'chartreuse']
-Hex Code: #80ff00
-RGB: (128, 255, 0)
-HSV: (0.25, 1, 255)
-```
+Shows:
+
+![[chartreuse]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/chartreuse.PNG?raw=true "chartreuse")
+
 
 NOTE: While this is the HSV value format that comes included with the colorsys python standard library, it doesn't seem to be a very common format elsewhere. 
 To match formats used in other locations, see the following functions:
