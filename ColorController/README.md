@@ -172,6 +172,7 @@ Shows the following in series:
 
 #### Example 2.2: Lighten a color.
 #### Example 2.3: Brighten a color.
+
 ### 3. Invert a color.
 ### 4. Access a rich set of color values and color names (prepared by Martin Krzywinski), conveniently stored in a Pandas DataFrame.
 Example:
@@ -222,8 +223,9 @@ Name: 5000, dtype: object
   - I don't know of any right now, but I'm sure they exist!
 
 ## Ideas
-  - Allow user to enter a listindex as an argument to show_color(), so that they can select what to show if there are multiple options
-
+  - Create subclasses of ColorController for NamedColor and CodedColor, 
+    which handle colors created with a specific set of values differently
+    than they handle colors with specific names.
 ## Resources:
   - What is color?: https://www.crayola.com/for-educators/resources-landing/articles/color-what-is-color.aspx
   - unofficial crayola colors: https://www.w3schools.com/colors/colors_crayola.asp
