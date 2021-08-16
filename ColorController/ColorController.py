@@ -1,10 +1,12 @@
 import colorsys
+from show_namedcolor import show_color as show_namedcolor
 from math import sin, cos, pi
 
 import pandas as pd
 from tkinter import Tk, Text, INSERT
 
-colors_df = pd.read_csv('ColorController/colornames.txt', delimiter=" ", skiprows=60, header=None)
+colors_df = pd.read_csv(r'colornames.txt', delimiter=" ", skiprows=60, header=None)
+
 colors_df.columns = ['IDX', 'NAME',
                      'rgb', 'R', 'G', 'B',
                      'hex', 'HEX',
@@ -287,7 +289,7 @@ class ColorController:
         self._hex_code = rgb_to_hex(r, g, b)
         self._rgb = colorsys.hsv_to_rgb(h, s, v)
 
-    def show_color(self):
+    def show_codedcolor(self):
         """
         Takes a properly-formatted hex color code as input,
         and opens a window displaying the color.
@@ -335,3 +337,17 @@ class ColorController:
         s = min((s + ((1 - s) * brightening_value)), 1)
         v = min((v * (1 + brightening_value), 255))
         self.hsv = (h, s, v)
+
+    def show_color(self):
+        if type(self.hex_code) == list:
+            show_namedcolor(self)
+        else:
+            self.show_codedcolor()
+
+
+
+
+if __name__ == '__main__':
+    name = "vomit"#sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-450].replace("_", " ")
+    color = ColorController(name=name)
+    color.show_color()
