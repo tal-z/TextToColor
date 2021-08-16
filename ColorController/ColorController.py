@@ -1,125 +1,11 @@
 import colorsys
-from show_namedcolor import show_color as show_namedcolor
-from math import sin, cos, pi
 
-import pandas as pd
 from tkinter import Tk, Text, INSERT
 
-colors_df = pd.read_csv(r'colornames.txt', delimiter=" ", skiprows=60, header=None)
-
-colors_df.columns = ['IDX', 'NAME',
-                     'rgb', 'R', 'G', 'B',
-                     'hex', 'HEX',
-                     'hsv', 'h', 's', 'v',
-                     'xyz', 'X', 'Y', 'Z',
-                     'lab', 'L', 'A', 'B',
-                     'lch', 'L', 'C', 'H',
-                     'cmyk', 'C', 'M', 'Y', 'K',
-                     'NEIGHBOUR_STR', 'NUM_NEIGHBOURS_MAXDE', 'WORD_TAGS']
-colors_df['WORD_TAGS'] = colors_df['WORD_TAGS'].apply(lambda x: x.split(":"))
-
-
-def invert_rgb(r, g, b):
-    r = 255 - r
-    g = 255 - g
-    b = 255 - b
-    return r, g, b
-
-
-def unlist(data):
-    if data == []:
-        return ''
-    elif type(data) == list:
-        return data[-1]
-    else:
-        return data
-
-
-def rgb_to_hex(red, green, blue):
-    """
-    Return color as #rrggbb for the given color values. Does not handle unbounded values (bigger than 255).
-    """
-    return '#%02x%02x%02x' % (int(round(red)), int(round(green)), int(round(blue)))
-
-
-def hex_to_rgb(hex_str=str):
-    """
-    Return (red, green, blue) for the color given as #rrggbb.
-    """
-    hex_str = hex_str.lstrip('#')
-    len_hex = len(hex_str)
-    return tuple(int(hex_str[i:i + len_hex // 3], 16) for i in range(0, len_hex, len_hex // 3))
-
-
-def colorsys_hsv_to_hsv360(colorsys_hsv=tuple):
-    """
-    Takes an HSV triplet as provided by colorsys, and converts it to match the
-    notation used in colornames.txt
-    """
-    h = colorsys_hsv[0] * 360
-    s = colorsys_hsv[1] * 100
-    v = (colorsys_hsv[2] / 255) * 100
-    corrected_hsv = (h, s, v)
-    return corrected_hsv
-
-
-def hsv360_to_hsvdistance(hsv360=tuple):
-    """
-    Takes an HSV triplet as provided by colorsys_hsv_to_hsv360(), and converts it to match the
-    notation used in the function for calculating distance between colors.
-    """
-    h = (hsv360[0] / 360) * (2 * pi)
-    s = hsv360[1] / 100
-    v = hsv360[2] / 100
-    corrected_hsv = (h, s, v)
-    return corrected_hsv
-
-
-def measure_hsv_distance(hsv1=tuple, hsv2=tuple):
-    """
-    Read this: https://stackoverflow.com/questions/35113979/calculate-distance-between-colors-in-hsv-space
-    """
-    h1, s1, v1 = hsv1
-    h2, s2, v2 = hsv2
-    distance = ((sin(h1) * s1 * v1 - sin(h2) * s2 * v2) ** 2
-                + (cos(h1) * s1 * v1 - cos(h2) * s2 * v2) ** 2
-                + (v1 - v2) ** 2)
-    return distance
-
-
-def query_hex_code(token=str):
-    """
-    Takes a color name, and checks whether it is present in a pre-defined dictionary of color names.
-    If the token is found, it returns the full range of hex codes that match the color name.
-    """
-    token = token.replace(" ", "_").lower()
-    if token in colors_df.NAME.values:
-        return list(colors_df.query(f'NAME=="{token.lower()}"').HEX)
-    else:
-        raise KeyError("Color name not found in colornames.txt")
-
-
-def find_closest_color_names(hex_str=str):
-    """
-    Calculates distance between a given color hex code and every color in the colornames.txt database,
-    and returns the a list of the closest color names.
-    Only returns multiple results if there is a tie for the closest color.
-    """
-    r, g, b = hex_to_rgb(hex_str)
-    h1, s1, v1 = colorsys.rgb_to_hsv(r, g, b)
-    h1, s1, v1 = colorsys_hsv_to_hsv360((h1, s1, v1))
-    h1, s1, v1 = hsv360_to_hsvdistance((h1, s1, v1))
-
-    closenames_df = pd.DataFrame(colors_df)
-    closenames_df['hsv'] = [(h, s, v) for h, s, v in
-                            zip(closenames_df['h'], closenames_df['s'], closenames_df['v'])]
-    closenames_df['hsv'] = closenames_df['hsv'].apply(hsv360_to_hsvdistance)
-    closenames_df['distance'] = closenames_df['hsv'].apply(lambda x: measure_hsv_distance((h1, s1, v1), x))
-
-    closest_distance = closenames_df.sort_values(by='distance').iloc[0].distance
-
-    return list(set(closenames_df[closenames_df['distance'] == closest_distance].NAME))
-
+from show_namedcolor import show_namedcolor
+from conversions import *
+from namelookup import *
+from helpers import *
 
 class ColorController:
 
@@ -166,21 +52,8 @@ class ColorController:
         """
         if self._name:
             return self._name
-        """
-        elif self._hex_code:
-            self._name = find_closest_color_names(self._hex_code)
-            return self._name
-        elif self._rgb:
-            r, g, b = self._rgb
-            hex_code = rgb_to_hex(r, g, b)
-            self._name = find_closest_color_names(hex_code)
-            return self._name
-        elif self._hsv:
-            h, s, v = self._hsv
-            r, g, b = colorsys.hsv_to_rgb(h, s, v)
-            self._name = find_closest_color_names(rgb_to_hex(r, g, b))
-            return self._name
-        """
+
+
     @name.setter
     def name(self, new_name):
         """
@@ -204,20 +77,7 @@ class ColorController:
         It works the same way as the name getter, but on hex_code."""
         if self._hex_code:
             return self._hex_code
-        """
-        elif self._rgb:
-            r, g, b = self._rgb
-            self._hex_code = rgb_to_hex(r, g, b)
-            return self._hex_code
-        elif self._hsv:
-            h, s, v = self._hsv
-            r, g, b = colorsys.hsv_to_rgb(h, s, v)
-            self._hex_code = rgb_to_hex(r, g, b)
-            return self._hex_code
-        elif self._name:
-            self._hex_code = query_hex_code(self._name)[-1]
-            return self._hex_code
-        """
+
 
     @hex_code.setter
     def hex_code(self, new_hex_code):
@@ -235,18 +95,7 @@ class ColorController:
         """This is the rgb getter."""
         if self._rgb:
             return self._rgb
-        """
-        elif self._hex_code:
-            self._rgb = hex_to_rgb(self._hex_code)
-            return self._rgb
-        elif self._hsv:
-            h, s, v = self._hsv
-            self._rgb = colorsys.hsv_to_rgb(h, s, v)
-            return self._rgb
-        elif self._name:
-            self._rgb = hex_to_rgb(unlist(query_hex_code(unlist(self._name))))
-            return self._rgb
-        """
+
 
     @rgb.setter
     def rgb(self, new_rgb):
@@ -262,20 +111,7 @@ class ColorController:
         """This is the hsv getter."""
         if self._hsv:
             return self._hsv
-        """
-        elif self._hex_code:
-            r, g, b = hex_to_rgb(self._hex_code)
-            self._hsv = colorsys.rgb_to_hsv(r, g, b)
-            return self._hsv
-        elif self._rgb:
-            r, g, b = self._rgb
-            self._hsv = colorsys.rgb_to_hsv(r, g, b)
-            return self._hsv
-        elif self._name:
-            r, g, b = hex_to_rgb(unlist(query_hex_code(unlist(self._name))))
-            self._hsv = colorsys.rgb_to_hsv(r, g, b)
-            return self._hsv
-        """
+
 
     @hsv.setter
     def hsv(self, new_hsv):
@@ -348,6 +184,6 @@ class ColorController:
 
 
 if __name__ == '__main__':
-    name = "vomit"#sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-450].replace("_", " ")
+    name = sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
     color = ColorController(name=name)
     color.show_color()

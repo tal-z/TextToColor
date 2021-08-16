@@ -24,7 +24,7 @@ def set_title_fontsize(title):
     return fontsize
 
 
-def show_color(color_object):
+def show_namedcolor(color_object):
     data = [1 for code in color_object.hex_code]
     explode = [.05 for d in data]
     plt.pie(data, explode=explode, labels=color_object.hex_code, colors=color_object.hex_code)
@@ -32,13 +32,3 @@ def show_color(color_object):
     plt.tight_layout()
     plt.show()
 
-
-
-
-
-
-if __name__ == '__main__':
-    cname = sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-450].replace("_", " ")
-
-    color = ColorController(name=cname)
-    show_color(color)
