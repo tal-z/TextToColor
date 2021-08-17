@@ -226,6 +226,8 @@ Name: 5000, dtype: object
   - Create subclasses of ColorController for NamedColor and CodedColor, 
     which handle colors created with a specific set of values differently
     than they handle colors with specific names.
+  - Fix decimal place rounding on color change methods
+
 ## Resources:
   - What is color?: https://www.crayola.com/for-educators/resources-landing/articles/color-what-is-color.aspx
   - unofficial crayola colors: https://www.w3schools.com/colors/colors_crayola.asp
