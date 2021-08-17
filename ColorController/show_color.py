@@ -8,11 +8,11 @@ def place_title_linebreak(title):
     new_title = ""
     line = ""
     for word in title:
-        if len(line) + len(word) <= 17:
+        if len(line) + len(word) <= 10:
             line += word + " "
             new_title += word + " "
         else:
-            new_title += word + "\n"
+            new_title += word + "\n "
             line = ""
     return new_title
 
@@ -36,16 +36,19 @@ def show_named_color(color_object):
 
 def show_coded_color(color_object):
     fig, ax = plt.subplots()
-    data = [1 for name in color_object.name]
+    data = [1 for name in color_object.name] * 2
+    list_spacer = [" " for name in color_object.name]
     hex_str = "#" + color_object.hex_code.lstrip('#')
     ax.pie(data,
            colors=[hex_str for name in color_object.name],
            wedgeprops={'linewidth': 3, 'ec': 'black'}
            )
     ax.pie(data,
-           labels=[n.replace("_", " ") for n in color_object.name],
+           labels=[place_title_linebreak(n.replace("_", " ")) for n in color_object.name] + list_spacer,
            textprops={'fontsize': 15},
-           colors=[hex_str for name in color_object.name],
+           rotatelabels=False,
+           startangle=90,
+           colors=[hex_str for name in color_object.name + list_spacer],
            wedgeprops={'linewidth': 1, 'ec': hex_str}
            )
     r, g, b = color_object.rgb
