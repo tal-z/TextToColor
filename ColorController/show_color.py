@@ -41,7 +41,6 @@ def show_coded_color(color_object):
     r, g, b = color_object.rgb
     text_r, text_g, text_b = invert_rgb(r, g, b)
     text_color = rgb_to_hex(text_r, text_g, text_b)
-
     plt.text(x=-.65, y=-.15, s=f'Hex Code: {color_object.hex_code}\n'
                              f'RGB: {color_object.rgb}\n'
                              f'HSV: {color_object.hsv}', color=text_color)
