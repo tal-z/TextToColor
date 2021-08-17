@@ -62,7 +62,7 @@ This is because there are sometimes many names that all describe the same color.
 We've had a lot of talk about colors so far, but we haven't even seen any colors yet! 
 Let's solve that now, and do away with these lengthy print statements:
 ```python
-color.hex_code ='##ffbff9'
+color.hex_code ='#ffbff9'
 
 color.show_color()
 ```
