@@ -1,8 +1,7 @@
-import colorsys
 
 from tkinter import Tk, Text, INSERT
 
-from show_namedcolor import show_namedcolor
+from show_color import show_named_color, show_coded_color
 from conversions import *
 from namelookup import *
 from helpers import *
@@ -17,13 +16,15 @@ class ColorController:
             self._hex_code = hex_code
             self._rgb = hex_to_rgb(hex_code)
             r, g, b = self._rgb
-            self._hsv = colorsys.rgb_to_hsv(r, g, b)
+            h, s, v = colorsys.rgb_to_hsv(r, g, b)
+            self._hsv = ('%.3g' % h, '%.3g' % s, '%.3g' % v)
             self._name = find_closest_color_names(hex_code)
         elif rgb:
             r, g, b = rgb
             self._hex_code = rgb_to_hex(r, g, b)
             self._rgb = rgb
-            self._hsv = colorsys.rgb_to_hsv(r, g, b)
+            h, s, v = colorsys.rgb_to_hsv(r, g, b)
+            self._hsv = ('%.3g' % h, '%.3g' % s, '%.3g' % v)
             self._name = find_closest_color_names(self._hex_code)
         elif hsv:
             h, s, v = hsv
@@ -38,7 +39,8 @@ class ColorController:
             hsv_list = []
             for color in self._rgb:
                 r, g, b = color
-                hsv_list.append(colorsys.rgb_to_hsv(r, g, b))
+                h, s, v = colorsys.rgb_to_hsv(r, g, b)
+                hsv_list.append(('%.3g' % h, '%.3g' % s, '%.3g' % v))
             self._hsv = hsv_list
             self._name = name
 
@@ -125,6 +127,7 @@ class ColorController:
         self._hex_code = rgb_to_hex(r, g, b)
         self._rgb = colorsys.hsv_to_rgb(h, s, v)
 
+
     def show_codedcolor(self):
         """
         Takes a properly-formatted hex color code as input,
@@ -176,14 +179,14 @@ class ColorController:
 
     def show_color(self):
         if type(self.hex_code) == list:
-            show_namedcolor(self)
+            show_named_color(self)
         else:
-            self.show_codedcolor()
+            show_coded_color(self)
 
 
 
 
 if __name__ == '__main__':
-    name = sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
-    color = ColorController(name=name)
+    name = "#345670"#sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
+    color = ColorController(hex_code=name)
     color.show_color()
