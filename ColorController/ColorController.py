@@ -1,5 +1,3 @@
-from tkinter import Tk, Text, INSERT
-
 from show_color import show_named_color, show_coded_color
 from conversions import *
 from namelookup import *
@@ -123,24 +121,6 @@ class ColorController:
         self._hex_code = rgb_to_hex(r, g, b)
         self._rgb = r, g, b
 
-    def show_codedcolor(self):
-        """
-        Takes a properly-formatted hex color code as input,
-        and opens a window displaying the color.
-        """
-        hc = '#' + unlist(self.hex_code).lstrip('#')
-        r_text, g_text, b_text = hex_to_rgb(hc)
-        r_text, g_text, b_text = invert_rgb(r_text, g_text, b_text)
-        text_color = rgb_to_hex(r_text, g_text, b_text)
-        gui = Tk(className=f' Hex Color Code: {unlist(hc)}; Color Name: {unlist(self.name)} ')
-        text = Text(gui, bg=f"{hc}", fg=text_color)
-        text.insert(INSERT, f' Hex Color Code: {self._hex_code}\n\n')
-        text.insert(INSERT, f' RGB Triplet: {self.rgb}\n\n')
-        text.insert(INSERT, f' HSV Triplet: {self.hsv}\n\n')
-        text.insert(INSERT, f' Color Name(s): {self.name}\n')
-        text.pack()
-        gui.mainloop()
-
     def darken_color(self, darkening_value=.25):
         """
         Takes a hex code and returns a hex code for a darker shade of the original hex code.
@@ -180,12 +160,12 @@ class ColorController:
 
 
 if __name__ == '__main__':
-    name = "ab902e"  # sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
-    color = ColorController(hex_code=name)
-    color.show_color()
-    color.lighten_color(1)
-    color.show_color()
-    color.darken_color(.2)
-    color.show_color()
-    color.brighten_color(1)
-    color.show_color()
+    my_name = "ab902e"  # sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
+    c = ColorController(hex_code=my_name)
+    c.show_color()
+    c.lighten_color(1)
+    c.show_color()
+    c.darken_color(.2)
+    c.show_color()
+    c.brighten_color(1)
+    c.show_color()
