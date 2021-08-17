@@ -17,19 +17,19 @@ class ColorController:
             self._rgb = hex_to_rgb(hex_code)
             r, g, b = self._rgb
             h, s, v = colorsys.rgb_to_hsv(r, g, b)
-            self._hsv = (float('%.3g' % h), float('%.3g' % s), float('%.3g' % v))
+            self._hsv = (float('%.3g' % h), float('%.3g' % s), int('%.3g' % v))
             self._name = find_closest_color_names(hex_code)
         elif rgb:
             r, g, b = rgb
             self._hex_code = rgb_to_hex(r, g, b)
             self._rgb = rgb
             h, s, v = colorsys.rgb_to_hsv(r, g, b)
-            self._hsv = (float('%.3g' % h), float('%.3g' % s), float('%.3g' % v))
+            self._hsv = (float('%.3g' % h), float('%.3g' % s), int('%.3g' % v))
             self._name = find_closest_color_names(self._hex_code)
         elif hsv:
             h, s, v = hsv
-            self._rgb = colorsys.hsv_to_rgb(h, s, v)
-            r, g, b = self._rgb
+            r, g, b = colorsys.hsv_to_rgb(h, s, v)
+            self._rgb = int(r), int(g), int(b)
             self._hex_code = rgb_to_hex(r, g, b)
             self._hsv = hsv
             self._name = find_closest_color_names(self._hex_code)
@@ -40,7 +40,7 @@ class ColorController:
             for color in self._rgb:
                 r, g, b = color
                 h, s, v = colorsys.rgb_to_hsv(r, g, b)
-                hsv_list.append((float('%.3g' % h), float('%.3g' % s), float('%.3g' % v)))
+                hsv_list.append((float('%.3g' % h), float('%.3g' % s), int('%.3g' % v)))
             self._hsv = hsv_list
             self._name = name
 
@@ -122,9 +122,10 @@ class ColorController:
         self._hsv = new_hsv
         h, s, v = new_hsv
         r, g, b = colorsys.hsv_to_rgb(h, s, v)
+        r, g, b = int(r), int(g), int(b)
         self._name = find_closest_color_names(rgb_to_hex(r, g, b))
         self._hex_code = rgb_to_hex(r, g, b)
-        self._rgb = colorsys.hsv_to_rgb(h, s, v)
+        self._rgb = r, g, b
 
 
     def show_codedcolor(self):
@@ -153,7 +154,7 @@ class ColorController:
         print("darkening color")
         h, s, v = unlist(self.hsv)
         v = v * (1 - darkening_value)
-        self.hsv = (h, s, v)
+        self.hsv = (float('%.3g' % h), float('%.3g' % s), int('%.3g' % v))
 
     def lighten_color(self, lightening_value=.25):
         """
@@ -163,7 +164,7 @@ class ColorController:
         print("lightening color")
         h, s, v = unlist(self.hsv)
         s = s * (1 - lightening_value)
-        self.hsv = (h, s, v)
+        self.hsv = (float('%.3g' % h), float('%.3g' % s), int('%.3g' % v))
 
     def brighten_color(self, brightening_value=.25):
         """
@@ -174,7 +175,7 @@ class ColorController:
         h, s, v = unlist(self.hsv)
         s = min((s + ((1 - s) * brightening_value)), 1)
         v = min((v * (1 + brightening_value), 255))
-        self.hsv = (h, s, v)
+        self.hsv = (float('%.3g' % h), float('%.3g' % s), int('%.3g' % v))
 
     def show_color(self):
         if type(self.hex_code) == list:
@@ -186,8 +187,12 @@ class ColorController:
 
 
 if __name__ == '__main__':
-    name = "12f4de"#sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
+    name = "ab902e"#sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
     color = ColorController(hex_code=name)
     color.show_color()
-    color.lighten_color()
+    color.lighten_color(1)
+    color.show_color()
+    color.darken_color(.2)
+    color.show_color()
+    color.brighten_color(1)
     color.show_color()
