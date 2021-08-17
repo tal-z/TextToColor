@@ -17,14 +17,14 @@ class ColorController:
             self._rgb = hex_to_rgb(hex_code)
             r, g, b = self._rgb
             h, s, v = colorsys.rgb_to_hsv(r, g, b)
-            self._hsv = ('%.3g' % h, '%.3g' % s, '%.3g' % v)
+            self._hsv = (float('%.3g' % h), float('%.3g' % s), float('%.3g' % v))
             self._name = find_closest_color_names(hex_code)
         elif rgb:
             r, g, b = rgb
             self._hex_code = rgb_to_hex(r, g, b)
             self._rgb = rgb
             h, s, v = colorsys.rgb_to_hsv(r, g, b)
-            self._hsv = ('%.3g' % h, '%.3g' % s, '%.3g' % v)
+            self._hsv = (float('%.3g' % h), float('%.3g' % s), float('%.3g' % v))
             self._name = find_closest_color_names(self._hex_code)
         elif hsv:
             h, s, v = hsv
@@ -40,7 +40,7 @@ class ColorController:
             for color in self._rgb:
                 r, g, b = color
                 h, s, v = colorsys.rgb_to_hsv(r, g, b)
-                hsv_list.append(('%.3g' % h, '%.3g' % s, '%.3g' % v))
+                hsv_list.append((float('%.3g' % h), float('%.3g' % s), float('%.3g' % v)))
             self._hsv = hsv_list
             self._name = name
 
@@ -63,7 +63,6 @@ class ColorController:
         a ColorController object is provided with a new name property, this bit of code is responsible for updating all
         of the other properties. This is where the magic happens.
         """
-        print("name setter")
         self._name = new_name
         self._hex_code = query_hex_code(new_name)
         self._rgb = [hex_to_rgb(code) for code in self._hex_code]
@@ -187,6 +186,8 @@ class ColorController:
 
 
 if __name__ == '__main__':
-    name = "#345670"#sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
+    name = "12f4de"#sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
     color = ColorController(hex_code=name)
+    color.show_color()
+    color.lighten_color()
     color.show_color()
