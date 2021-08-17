@@ -36,7 +36,8 @@ def show_named_color(color_object):
 
 def show_coded_color(color_object):
     data = [1 for name in color_object.name]
-    plt.pie(data, labels=color_object.name, colors=[color_object.hex_code for name in color_object.name])
+    hex_str = "#" + color_object.hex_code.lstrip('#')
+    plt.pie(data, labels=color_object.name, colors=[hex_str for name in color_object.name], wedgeprops={'linewidth': .5, 'ec': hex_str})
     r, g, b = color_object.rgb
     text_r, text_g, text_b = invert_rgb(r, g, b)
     text_color = rgb_to_hex(text_r, text_g, text_b)
