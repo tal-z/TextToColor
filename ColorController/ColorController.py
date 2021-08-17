@@ -1,10 +1,10 @@
-
 from tkinter import Tk, Text, INSERT
 
 from show_color import show_named_color, show_coded_color
 from conversions import *
 from namelookup import *
 from helpers import *
+
 
 class ColorController:
 
@@ -55,7 +55,6 @@ class ColorController:
         if self._name:
             return self._name
 
-
     @name.setter
     def name(self, new_name):
         """
@@ -79,7 +78,6 @@ class ColorController:
         if self._hex_code:
             return self._hex_code
 
-
     @hex_code.setter
     def hex_code(self, new_hex_code):
         """
@@ -97,7 +95,6 @@ class ColorController:
         if self._rgb:
             return self._rgb
 
-
     @rgb.setter
     def rgb(self, new_rgb):
         """This is the rgb setter."""
@@ -113,7 +110,6 @@ class ColorController:
         if self._hsv:
             return self._hsv
 
-
     @hsv.setter
     def hsv(self, new_hsv):
         """This is the hsv setter. It has one extra step, because it is necessary
@@ -126,7 +122,6 @@ class ColorController:
         self._name = find_closest_color_names(rgb_to_hex(r, g, b))
         self._hex_code = rgb_to_hex(r, g, b)
         self._rgb = r, g, b
-
 
     def show_codedcolor(self):
         """
@@ -184,10 +179,8 @@ class ColorController:
             show_coded_color(self)
 
 
-
-
 if __name__ == '__main__':
-    name = "ab902e"#sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
+    name = "ab902e"  # sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
     color = ColorController(hex_code=name)
     color.show_color()
     color.lighten_color(1)
