@@ -35,15 +35,24 @@ def show_named_color(color_object):
 
 
 def show_coded_color(color_object):
+    fig, ax = plt.subplots()
     data = [1 for name in color_object.name]
     hex_str = "#" + color_object.hex_code.lstrip('#')
-    plt.pie(data, labels=color_object.name, colors=[hex_str for name in color_object.name], wedgeprops={'linewidth': .5, 'ec': hex_str})
+    ax.pie(data,
+           colors=[hex_str for name in color_object.name],
+           wedgeprops={'linewidth': 3, 'ec': 'black'}
+           )
+    ax.pie(data,
+           labels=[n.replace("_", " ") for n in color_object.name],
+           textprops={'fontsize': 15},
+           colors=[hex_str for name in color_object.name],
+           wedgeprops={'linewidth': 1, 'ec': hex_str}
+           )
     r, g, b = color_object.rgb
     text_r, text_g, text_b = invert_rgb(r, g, b)
     text_color = rgb_to_hex(text_r, text_g, text_b)
-    plt.text(x=-.65, y=-.15, s=f'Hex Code: {color_object.hex_code}\n'
+    ax.text(x=-.65, y=-.15, s=f'Hex Code: {color_object.hex_code}\n'
                              f'RGB: {color_object.rgb}\n'
                              f'HSV: {color_object.hsv}', color=text_color)
-    #plt.title(place_title_linebreak(color_object.name.upper()), fontsize=set_title_fontsize(color_object.name))
     plt.show()
 
