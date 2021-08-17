@@ -1,7 +1,6 @@
 from math import pi
 
 
-
 def invert_rgb(r, g, b):
     r = 255 - r
     g = 255 - g
@@ -47,5 +46,4 @@ def hsv360_to_hsvdistance(hsv360=tuple):
     v = hsv360[2] / 100
     corrected_hsv = (h, s, v)
     return corrected_hsv
-
 
