@@ -174,3 +174,18 @@ if __name__ == '__main__':
     c.show_color()
     c.rgb = c.rgb[-1]
     c.show_color()
+    c.name = 'red'
+    c.hex_code = c.hex_code[-1]
+    c.show_color()
+    c.lighten_color()
+    c.show_color()
+    r, g, b = c.rgb
+    r, g, b = invert_rgb(r, g, b)
+    c.rgb = r, g, b
+    c.show_color()
+    c.name = 'macaroni and cheese'
+    c.show_color()
+    c.name = sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-620].replace("_", " ")
+    c.show_color()
+    c.name = 'blue'
+    c.show_color()
