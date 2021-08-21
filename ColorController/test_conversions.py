@@ -1,7 +1,5 @@
 import unittest
 
-import pytest
-
 from conversions import rgb_to_hex, hex_to_rgb, invert_rgb
 
 
