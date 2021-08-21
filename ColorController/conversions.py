@@ -12,6 +12,12 @@ def rgb_to_hex(red, green, blue):
     """
     Return color as #rrggbb for the given color values. Does not handle unbounded values (bigger than 255).
     """
+    if red > 255 or red < 0:
+        raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
+    if green > 255 or green < 0:
+        raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
+    if blue > 255 or blue < 0:
+        raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
     return '#%02x%02x%02x' % (int(round(red)), int(round(green)), int(round(blue)))
 
 

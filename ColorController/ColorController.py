@@ -165,7 +165,7 @@ class ColorController:
 if __name__ == '__main__':
     my_name = "#ad3176"  # sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-320].replace("_", " ")
     c = ColorController(hex_code=my_name)
-    c.show_color()
+    """    c.show_color()
     c.lighten_color(.8)
     c.show_color()
     c.darken_color(.2)
@@ -192,4 +192,5 @@ if __name__ == '__main__':
     c.name = 'blue'
     c.show_color()
     c.hsv = c.hsv[-3]
-    c.show_color()
+    c.show_color()"""
+    c.rgb = (500, 300, 23)
