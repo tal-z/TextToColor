@@ -1,4 +1,5 @@
 from math import pi
+import warnings
 
 
 def invert_rgb(r, g, b):
@@ -18,6 +19,12 @@ def rgb_to_hex(red, green, blue):
         raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
     if blue > 255 or blue < 0:
         raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
+    if type(red) != int:
+        warnings.warn(f"Inputs for red, green, and blue must be integer values between 0 and 255. You entered type: {type(red)} for red.")
+    if type(green) != int:
+        warnings.warn(f"Inputs for red, green, and blue must be integer values between 0 and 255. You entered type: {type(green)} for green.")
+    if type(blue) != int:
+        warnings.warn(f"Inputs for red, green, and blue must be integer values between 0 and 255. You entered type: {type(blue)} for blue.")
     return '#%02x%02x%02x' % (int(round(red)), int(round(green)), int(round(blue)))
 
 
