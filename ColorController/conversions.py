@@ -17,7 +17,7 @@ def rgb_to_hex(red, green, blue):
 
 def hex_to_rgb(hex_str=str):
     """
-    Return (red, green, blue) for the color given as #rrggbb.
+    Return (red, green, blue) for the color given as #rrggbb. Values are integers only, as they should be.
     """
     hex_str = hex_str.lstrip('#')
     len_hex = len(hex_str)
