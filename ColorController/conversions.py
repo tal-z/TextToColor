@@ -34,6 +34,8 @@ def hex_to_rgb(hex_str=str):
     """
     hex_str = hex_str.lstrip('#')
     len_hex = len(hex_str)
+    if len_hex != 6:
+        raise ValueError('Too many digits in hex code.')
     return tuple(int(hex_str[i:i + len_hex // 3], 16) for i in range(0, len_hex, len_hex // 3))
 
 
