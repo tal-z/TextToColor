@@ -4,6 +4,7 @@ import pytest
 
 from conversions import rgb_to_hex, hex_to_rgb, invert_rgb
 
+
 class TestConversions(unittest.TestCase):
 
     def test_rgb_to_hex(self):
