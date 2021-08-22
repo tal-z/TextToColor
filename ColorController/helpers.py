@@ -1,12 +1,15 @@
 import math
 
-def unlist(data):
-    if data == []:
+def unlist(object):
+    """Take some object, and checks if it is a list.
+    If it is a list, it returns the last value in the list, or an empty string if the list is empty.
+    Else, it returns the object unmodified."""
+    if object == []:
         return ''
-    elif type(data) == list:
-        return data[-1]
+    elif type(object) == list:
+        return object[-1]
     else:
-        return data
+        return object
 
 
 def hsv_round(n, decimals=0):
