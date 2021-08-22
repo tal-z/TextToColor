@@ -15,6 +15,8 @@ def hsv_round(n, decimals=0):
     In the case of HSV360, this is zero decimals (integer).
     This custom round function works differently than the built-in round() function. It breaks ties by rounding up,
     whereas the built-in round() function breaks ties by rounding to the nearest even number.
+
+    See this primer on rounding in Python: https://realpython.com/python-rounding/
     """
     multiplier = 10 ** decimals
     return math.floor(n*multiplier + 0.5) / multiplier
