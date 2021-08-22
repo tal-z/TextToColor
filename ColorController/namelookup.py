@@ -37,7 +37,7 @@ def query_hex_code(token=str):
     """
     token = token.replace(" ", "_").lower()
     if token in colors_df.NAME.values:
-        return list(colors_df.query(f'NAME=="{token.lower()}"').HEX)
+        return sorted(list(colors_df.query(f'NAME=="{token.lower()}"').HEX))
     else:
         raise KeyError("Color name not found in colornames.txt")
 
@@ -61,4 +61,4 @@ def find_closest_color_names(hex_str=str):
 
     closest_distance = closenames_df.sort_values(by='distance').iloc[0].distance
 
-    return list(set(closenames_df[closenames_df['distance'] == closest_distance].NAME))
+    return sorted(list(set(closenames_df[closenames_df['distance'] == closest_distance].NAME)))
