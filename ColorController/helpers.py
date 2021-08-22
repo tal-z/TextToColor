@@ -7,7 +7,7 @@ def unlist(object):
     if object == []:
         return ''
     elif type(object) == list:
-        return object[-1]
+        return object[0]
     else:
         return object
 
