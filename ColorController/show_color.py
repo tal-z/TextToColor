@@ -7,7 +7,7 @@ def place_title_linebreak(title):
     new_title = ""
     line = ""
     for word in title:
-        if len(line) + len(word) <= 10:
+        if len(line) + len(word) < 12:
             line += word + " "
             new_title += word + " "
         else:
@@ -43,18 +43,20 @@ def show_coded_color(color_object):
            wedgeprops={'linewidth': 3, 'ec': 'black'}
            )
     ax.pie(data,
-           labels=[place_title_linebreak(n.replace("_", " ")) for n in color_object.name] + list_spacer,
+           labels=[place_title_linebreak(n.replace("_", " ")).upper() for n in color_object.name] + list_spacer,
            textprops={'fontsize': 15},
            rotatelabels=False,
            startangle=90,
            colors=[hex_str for name in color_object.name + list_spacer],
            wedgeprops={'linewidth': 1, 'ec': hex_str}
            )
+    plt.title(color_object.hex_code.upper(), fontsize=40)
     r, g, b = color_object.rgb
     text_r, text_g, text_b = invert_rgb(r, g, b)
     text_color = rgb_to_hex(text_r, text_g, text_b)
     ax.text(x=-.65, y=-.15, s=f'Hex Code: {color_object.hex_code}\n'
                              f'RGB: {color_object.rgb}\n'
                              f'HSV: {color_object.hsv}', color=text_color)
+    plt.tight_layout()
     plt.show()
 
