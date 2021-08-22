@@ -12,22 +12,22 @@ class ColorController:
         if hex_code:
             self._hex_code = hex_code
             self._rgb = hex_to_rgb(hex_code)
-            r, g, b = self._rgb
-            h, s, v = colorsys.rgb_to_hsv(r, g, b)
+            red, green, blue = self._rgb
+            h, s, v = colorsys.rgb_to_hsv(red, green, blue)
             self._hsv = (float('%.3g' % h), float('%.3g' % s), int(float('%.3g' % v)))
             self._name = find_closest_color_names(hex_code)
         elif rgb:
-            r, g, b = rgb
-            self._hex_code = rgb_to_hex(r, g, b)
+            red, green, blue = rgb
+            self._hex_code = rgb_to_hex(red, green, blue)
             self._rgb = rgb
-            h, s, v = colorsys.rgb_to_hsv(r, g, b)
+            h, s, v = colorsys.rgb_to_hsv(red, green, blue)
             self._hsv = (float('%.3g' % h), float('%.3g' % s), int(float('%.3g' % v)))
             self._name = find_closest_color_names(self._hex_code)
         elif hsv:
             h, s, v = hsv
-            r, g, b = colorsys.hsv_to_rgb(h, s, v)
-            self._rgb = int(r), int(g), int(b)
-            self._hex_code = rgb_to_hex(r, g, b)
+            red, green, blue = colorsys.hsv_to_rgb(h, s, v)
+            self._rgb = int(red), int(green), int(blue)
+            self._hex_code = rgb_to_hex(red, green, blue)
             self._hsv = hsv
             self._name = find_closest_color_names(self._hex_code)
         elif name:
@@ -35,8 +35,8 @@ class ColorController:
             self._rgb = [hex_to_rgb(code) for code in self._hex_code]
             hsv_list = []
             for color in self._rgb:
-                r, g, b = color
-                h, s, v = colorsys.rgb_to_hsv(r, g, b)
+                red, green, blue = color
+                h, s, v = colorsys.rgb_to_hsv(red, green, blue)
                 hsv_list.append((float('%.3g' % h), float('%.3g' % s), int(float('%.3g' % v))))
             self._hsv = hsv_list
             self._name = name
@@ -162,20 +162,21 @@ class ColorController:
 
 
 if __name__ == '__main__':
-    my_name = sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-900].replace("_", " ")
+    my_name = sorted(colors_df.NAME.tolist(), key=lambda name: len(name))[-3030].replace("_", " ")
     c = ColorController(name=my_name)
     c.show_color()
     c.lighten_color(.8)
+    c.brighten_color()
     c.show_color()
     c.darken_color(.2)
     c.show_color()
     c.brighten_color(1)
     c.show_color()
-    c.name = 'white'
+    c.name = sorted(colors_df.NAME.tolist(), key=lambda name: len(name))[2050].replace("_", " ")
     c.show_color()
     c.rgb = c.rgb[-1]
     c.show_color()
-    c.name = 'red'
+    c.name = sorted(colors_df.NAME.tolist(), key=lambda name: len(name))[1].replace("_", " ")
     c.hex_code = c.hex_code[-1]
     c.show_color()
     c.lighten_color()
