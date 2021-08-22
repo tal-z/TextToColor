@@ -1,4 +1,3 @@
-#from ColorController import ColorController, colors_df
 import matplotlib.pyplot as plt
 from conversions import invert_rgb, rgb_to_hex
 
@@ -12,7 +11,7 @@ def place_title_linebreak(title):
             line += word + " "
             new_title += word + " "
         else:
-            new_title += word + "\n "
+            new_title += "\n " + word + " "
             line = ""
     return new_title
 
