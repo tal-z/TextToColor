@@ -3,6 +3,12 @@ import warnings
 
 
 def invert_rgb(r, g, b):
+    """
+    Returns the inverse of r, g, b, where r, g, b are each values in range(0,256).
+    """
+    if (type(r), type(g),type(b)) != (int, int, int):
+        warnings.warn(f"Inputs for r, g, and b must be integer values between 0 and 255. "
+                      f"You entered types {(type(r), type(g), type(b))} for (r, g, b)")
     r = 255 - r
     g = 255 - g
     b = 255 - b
@@ -19,12 +25,9 @@ def rgb_to_hex(red, green, blue):
         raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
     if blue > 255 or blue < 0:
         raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
-    if type(red) != int:
-        warnings.warn(f"Inputs for red, green, and blue must be integer values between 0 and 255. You entered type: {type(red)} for red.")
-    if type(green) != int:
-        warnings.warn(f"Inputs for red, green, and blue must be integer values between 0 and 255. You entered type: {type(green)} for green.")
-    if type(blue) != int:
-        warnings.warn(f"Inputs for red, green, and blue must be integer values between 0 and 255. You entered type: {type(blue)} for blue.")
+    if (type(red), type(green), type(blue)) != (int, int, int):
+        warnings.warn(f"Inputs for red, green, and blue must be integer values between 0 and 255. "
+                      f"You entered types {(type(red), type(green), type(blue))} for (r, g, b)")
     return '#%02x%02x%02x' % (int(round(red)), int(round(green)), int(round(blue)))
 
 

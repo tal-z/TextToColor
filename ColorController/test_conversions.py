@@ -33,9 +33,11 @@ class TestConversions(unittest.TestCase):
     def test_invert_rgb(self):
         self.assertEqual(invert_rgb(255, 255, 255), (0, 0, 0))
         self.assertEqual(invert_rgb(0, 0, 0), (255, 255, 255))
+        self.assertWarns(UserWarning, invert_rgb, 100, 25.5, 30)
 
     def test_colorsys_hsv_to_hsv360(self):
         self.assertEqual(colorsys_hsv_to_hsv360((0, 0, 255)), (0, 0, 100))
         self.assertEqual(colorsys_hsv_to_hsv360((1, 1, 255)), (360, 100, 100))
         self.assertEqual(colorsys_hsv_to_hsv360((.25, .25, 100)), (90, 25, int(100/2.55)))
+
 
