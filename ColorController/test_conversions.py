@@ -1,3 +1,4 @@
+import colorsys
 import unittest
 
 from conversions import rgb_to_hex, hex_to_rgb, invert_rgb, colorsys_hsv_to_hsv360
@@ -39,5 +40,11 @@ class TestConversions(unittest.TestCase):
         self.assertEqual(colorsys_hsv_to_hsv360((0, 0, 255)), (0, 0, 100))
         self.assertEqual(colorsys_hsv_to_hsv360((1, 1, 255)), (360, 100, 100))
         self.assertEqual(colorsys_hsv_to_hsv360((.25, .25, 100)), (90, 25, int(100/2.55)))
+
+    def test_hex_to_hsv360(self):
+        r, g, b = hex_to_rgb('#F4ED7C')
+        h, s, v = colorsys.rgb_to_hsv(r, g, b)
+        h, s, v = colorsys_hsv_to_hsv360((h, s, v))
+        self.assertEqual((h, s, v), (57, 49, 96))
 
 
