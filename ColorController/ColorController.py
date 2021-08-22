@@ -64,8 +64,8 @@ class ColorController:
         self._rgb = [hex_to_rgb(code) for code in self._hex_code]
         hsv_list = []
         for color in self._rgb:
-            r, g, b = color
-            h, s, v = colorsys.rgb_to_hsv(r, g, b)
+            red, green, blue = color
+            h, s, v = colorsys.rgb_to_hsv(red, green, blue)
             hsv_list.append((float('%.3g' % h), float('%.3g' % s), int(float('%.3g' % v))))
         self._hsv = hsv_list
 
@@ -84,8 +84,8 @@ class ColorController:
         self._hex_code = new_hex_code
         self._name = find_closest_color_names(new_hex_code)
         self._rgb = hex_to_rgb(new_hex_code)
-        r, g, b = self._rgb
-        h, s, v = colorsys.rgb_to_hsv(r, g, b)
+        red, green, blue = self._rgb
+        h, s, v = colorsys.rgb_to_hsv(red, green, blue)
         self._hsv = (float('%.3g' % h), float('%.3g' % s), int(float('%.3g' % v)))
 
     @property
@@ -98,10 +98,10 @@ class ColorController:
     def rgb(self, new_rgb):
         """This is the rgb setter."""
         self._rgb = new_rgb
-        r, g, b = self._rgb
-        self._name = find_closest_color_names(rgb_to_hex(r, g, b))
-        self._hex_code = rgb_to_hex(r, g, b)
-        h, s, v = colorsys.rgb_to_hsv(r, g, b)
+        red, green, blue = self._rgb
+        self._name = find_closest_color_names(rgb_to_hex(red, green, blue))
+        self._hex_code = rgb_to_hex(red, green, blue)
+        h, s, v = colorsys.rgb_to_hsv(red, green, blue)
         self._hsv = (float('%.3g' % h), float('%.3g' % s), int(float('%.3g' % v)))
 
     @property
@@ -117,11 +117,11 @@ class ColorController:
         """
         self._hsv = new_hsv
         h, s, v = new_hsv
-        r, g, b = colorsys.hsv_to_rgb(h, s, v)
-        r, g, b = int(r), int(g), int(b)
-        self._name = find_closest_color_names(rgb_to_hex(r, g, b))
-        self._hex_code = rgb_to_hex(r, g, b)
-        self._rgb = r, g, b
+        red, green, blue = colorsys.hsv_to_rgb(h, s, v)
+        red, green, blue = int(red), int(green), int(blue)
+        self._name = find_closest_color_names(rgb_to_hex(red, green, blue))
+        self._hex_code = rgb_to_hex(red, green, blue)
+        self._rgb = red, green, blue
 
     def darken_color(self, darkening_value=.25):
         """
@@ -162,37 +162,15 @@ class ColorController:
 
 
 if __name__ == '__main__':
-    my_name = sorted(colors_df.NAME.tolist(), key=lambda name: len(name))[-3030].replace("_", " ")
-    c = ColorController(name=my_name)
-    c.show_color()
-    c.lighten_color(.8)
-    c.brighten_color()
-    c.show_color()
-    c.darken_color(.2)
-    c.show_color()
-    c.brighten_color(1)
-    c.show_color()
-    c.name = sorted(colors_df.NAME.tolist(), key=lambda name: len(name))[2050].replace("_", " ")
-    c.show_color()
-    c.rgb = c.rgb[-1]
-    c.show_color()
-    c.name = sorted(colors_df.NAME.tolist(), key=lambda name: len(name))[1].replace("_", " ")
-    c.hex_code = c.hex_code[-1]
+    c = ColorController(name='cinnamon')
     c.show_color()
     c.lighten_color()
+    c.name = c.name[0].replace("_", " ")
     c.show_color()
-    r, g, b = c.rgb
-    r, g, b = invert_rgb(r, g, b)
-    c.rgb = r, g, b
+    c.lighten_color()
+    c.name = c.name[0]
     c.show_color()
-    c.name = 'macaroni and cheese'
-    c.show_color()
-    c.name = sorted(colors_df.NAME.tolist(), key=lambda x: len(x))[-620].replace("_", " ")
-    c.show_color()
-    c.name = 'blue'
-    c.show_color()
-    c.hsv = c.hsv[-3]
-    c.show_color()
-    c.rgb = (250, 200, 23)
+    c.brighten_color()
+    c.name = c.name[0].replace("_", " ")
     c.show_color()
 
