@@ -46,5 +46,15 @@ class TestConversions(unittest.TestCase):
         h, s, v = colorsys.rgb_to_hsv(r, g, b)
         h, s, v = colorsys_hsv_to_hsv360((h, s, v))
         self.assertEqual((h, s, v), (57, 49, 96))
-
-
+        r, g, b = hex_to_rgb('#4d8914')
+        h, s, v = colorsys.rgb_to_hsv(r, g, b)
+        h, s, v = colorsys_hsv_to_hsv360((h, s, v))
+        self.assertEqual((h, s, v), (91, 85, 54))
+        r, g, b = hex_to_rgb('#344ea3')
+        h, s, v = colorsys.rgb_to_hsv(r, g, b)
+        h, s, v = colorsys_hsv_to_hsv360((h, s, v))
+        self.assertEqual((h, s, v), (226, 68, 64))
+        r, g, b = hex_to_rgb('#211123')
+        h, s, v = colorsys.rgb_to_hsv(r, g, b)
+        h, s, v = colorsys_hsv_to_hsv360((h, s, v))
+        self.assertEqual((h, s, v), (293, 51, 14))
