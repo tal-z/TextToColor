@@ -17,17 +17,26 @@ def place_title_linebreak(title):
 
 
 def set_title_fontsize(title):
-    fontsize=40
+    fontsize = 40
     title_len = len(title)
     if title_len > 15:
-        fontsize = 50-title_len
+        fontsize = 50 - title_len
     return fontsize
 
 
-def show_named_color(color_object):
+def show_named_color(color_object, rotatelabels=False, labelfontsize=12):
+    if color_object.name.lower() == 'grey':
+        rotatelabels = True
+        labelfontsize = 4
     data = [1 for code in color_object.hex_code]
     explode = [.05 for d in data]
-    plt.pie(data, explode=explode, labels=color_object.hex_code, colors=color_object.hex_code)
+    plt.pie(data,
+            explode=explode,
+            labels=color_object.hex_code,
+            rotatelabels=rotatelabels,
+            textprops={'fontsize': labelfontsize},
+            colors=color_object.hex_code,
+            )
     plt.title(place_title_linebreak(color_object.name.upper()), fontsize=set_title_fontsize(color_object.name))
     plt.tight_layout()
     plt.show()
@@ -55,8 +64,7 @@ def show_coded_color(color_object):
     text_r, text_g, text_b = invert_rgb(r, g, b)
     text_color = rgb_to_hex(text_r, text_g, text_b)
     ax.text(x=-.65, y=-.15, s=f'Hex Code: {color_object.hex_code}\n'
-                             f'RGB: {color_object.rgb}\n'
-                             f'HSV: {color_object.hsv}', color=text_color)
+                              f'RGB: {color_object.rgb}\n'
+                              f'HSV: {color_object.hsv}', color=text_color)
     plt.tight_layout()
     plt.show()
-
