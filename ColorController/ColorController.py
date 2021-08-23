@@ -141,7 +141,7 @@ class ColorController:
         print("lightening color")
         h, s, v = unlist(self.hsv)
         s = s * (1 - lightening_value)
-        v = min(v * (1+lightening_value), 255)
+        v = min(v * (1+lightening_value) or 50, 255)
         self.hsv = (float('%.3g' % h), float('%.3g' % s), int(float('%.3g' % v)))
 
     def brighten_color(self, brightening_value=.25):
@@ -163,23 +163,24 @@ class ColorController:
 
 
 if __name__ == '__main__':
-    c = ColorController(name='tan')
+    print(colors_df.NAME.value_counts())
+    c = ColorController(name='maroon')
     c.show_color()
-    c.hex_code = c.hex_code[-1]
+    c.hex_code = c.hex_code[-3]
     c.show_color()
-    c.lighten_color(.5)
+    c.lighten_color()
     c.show_color()
-    c.lighten_color(.5)
+    c.lighten_color()
     c.show_color()
-    c.lighten_color(.5)
+    c.lighten_color()
     c.show_color()
-    c.lighten_color(.5)
+    c.lighten_color()
     c.show_color()
-    c.lighten_color(.5)
+    c.lighten_color()
     c.show_color()
-    c.lighten_color(.5)
+    c.lighten_color()
     c.show_color()
-    c.lighten_color(.5)
+    c.lighten_color()
     c.show_color()
-    c.lighten_color(.5)
+    c.lighten_color()
     c.show_color()
