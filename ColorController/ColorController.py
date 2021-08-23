@@ -141,6 +141,7 @@ class ColorController:
         print("lightening color")
         h, s, v = unlist(self.hsv)
         s = s * (1 - lightening_value)
+        v = min(v * (1+lightening_value), 255)
         self.hsv = (float('%.3g' % h), float('%.3g' % s), int(float('%.3g' % v)))
 
     def brighten_color(self, brightening_value=.25):
@@ -162,15 +163,23 @@ class ColorController:
 
 
 if __name__ == '__main__':
-    c = ColorController(name='cinnamon')
+    c = ColorController(name='tan')
     c.show_color()
-    c.lighten_color()
-    c.name = c.name[0].replace("_", " ")
+    c.hex_code = c.hex_code[-1]
     c.show_color()
-    c.lighten_color()
-    c.name = c.name[0]
+    c.lighten_color(.5)
     c.show_color()
-    c.brighten_color()
-    c.name = c.name[0].replace("_", " ")
+    c.lighten_color(.5)
     c.show_color()
-
+    c.lighten_color(.5)
+    c.show_color()
+    c.lighten_color(.5)
+    c.show_color()
+    c.lighten_color(.5)
+    c.show_color()
+    c.lighten_color(.5)
+    c.show_color()
+    c.lighten_color(.5)
+    c.show_color()
+    c.lighten_color(.5)
+    c.show_color()
