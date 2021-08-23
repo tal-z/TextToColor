@@ -223,10 +223,9 @@ Name: 5000, dtype: object
   - I don't know of any right now, but I'm sure they exist!
 
 ## Ideas
-  - Create subclasses of ColorController for NamedColor and CodedColor, 
-    which handle colors created with a specific set of values differently
-    than they handle colors with specific names.
-  - Fix decimal place rounding on color change methods
+  - tint and shade methods instead of or in addition to lighten/darken?
+  - more unit tests
+  - re-do readme with new show methods
 
 ## Resources:
   - What is color?: https://www.crayola.com/for-educators/resources-landing/articles/color-what-is-color.aspx
@@ -238,3 +237,4 @@ Name: 5000, dtype: object
   - webcolors source code: https://github.com/ubernostrum/webcolors/blob/trunk/src/webcolors.py
     - Note: while I'm not using webcolors in this program, I'm looking at their hex conversion algorithms to better understand the concept and see how it gets implemented.
   - explanation of calculating distance in hsv space: https://stackoverflow.com/questions/35113979/calculate-distance-between-colors-in-hsv-space
+  - Making colors lighter or darker: https://www.color-hex.com/blog/making-colors-lighter-or-darker-4
