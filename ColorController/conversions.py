@@ -7,7 +7,10 @@ def invert_rgb(r, g, b):
     """
     Returns the inverse of r, g, b, where r, g, b are each values in range(0,256).
     """
-    if (type(r), type(g),type(b)) != (int, int, int):
+    if any(ch < 0 or ch > 255 for ch in [r, g, b]):
+        raise ValueError(f"Inputs for r, g, and b must be integer values between 0 and 255. "
+                         f"You entered values {r, g, b} for (r, g, b)")
+    if (type(r), type(g), type(b)) != (int, int, int):
         warnings.warn(f"Inputs for r, g, and b must be integer values between 0 and 255. "
                       f"You entered types {(type(r), type(g), type(b))} for (r, g, b)")
     r = 255 - r
@@ -65,4 +68,3 @@ def hsv360_to_hsvdistance(hsv360=tuple):
     v = hsv360[2] / 100
     corrected_hsv = (h, s, v)
     return corrected_hsv
-
