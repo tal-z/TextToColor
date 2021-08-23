@@ -35,6 +35,14 @@ class TestConversions(unittest.TestCase):
         self.assertEqual(invert_rgb(255, 255, 255), (0, 0, 0))
         self.assertEqual(invert_rgb(0, 0, 0), (255, 255, 255))
         self.assertWarns(UserWarning, invert_rgb, 100, 25.5, 30)
+        self.assertRaises(ValueError, invert_rgb, 100, 25.5, 500)
+        self.assertRaises(ValueError, invert_rgb, 100, 25.5, -3)
+        with self.assertRaises(ValueError) as context:
+            invert_rgb(100, 255, -30)
+        self.assertTrue(f"Inputs for r, g, and b must be integer values between 0 and 255. "
+                        f"You entered values (100, 255, -30) for (r, g, b)" in str(context.exception)
+                        )
+
 
     def test_colorsys_hsv_to_hsv360(self):
         self.assertEqual(colorsys_hsv_to_hsv360((0, 0, 255)), (0, 0, 100))
@@ -46,7 +54,7 @@ class TestConversions(unittest.TestCase):
         h, s, v = colorsys.rgb_to_hsv(r, g, b)
         h, s, v = colorsys_hsv_to_hsv360((h, s, v))
         self.assertEqual((h, s, v), (57, 49, 96))
-        r, g, b = hex_to_rgb('#4d8914')
+        r, g, b = hex_to_rgb('4d8914')
         h, s, v = colorsys.rgb_to_hsv(r, g, b)
         h, s, v = colorsys_hsv_to_hsv360((h, s, v))
         self.assertEqual((h, s, v), (91, 85, 54))
@@ -54,7 +62,8 @@ class TestConversions(unittest.TestCase):
         h, s, v = colorsys.rgb_to_hsv(r, g, b)
         h, s, v = colorsys_hsv_to_hsv360((h, s, v))
         self.assertEqual((h, s, v), (226, 68, 64))
-        r, g, b = hex_to_rgb('#211123')
+        r, g, b = hex_to_rgb('211123')
         h, s, v = colorsys.rgb_to_hsv(r, g, b)
         h, s, v = colorsys_hsv_to_hsv360((h, s, v))
         self.assertEqual((h, s, v), (293, 51, 14))
+
