@@ -23,12 +23,9 @@ def rgb_to_hex(red, green, blue):
     """
     Return color as #rrggbb for the given color values. Does not handle unbounded values (bigger than 255).
     """
-    if red > 255 or red < 0:
-        raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
-    if green > 255 or green < 0:
-        raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
-    if blue > 255 or blue < 0:
-        raise ValueError("Inputs for red, green, and blue must be integer values between 0 and 255.")
+    if any(ch < 0 or ch > 255 for ch in [red, green, blue]):
+        raise ValueError(f"Inputs for red, green, and blue must be integer values between 0 and 255. "
+                         f"You entered values {red, green, blue} for (red, green, blue)")
     if (type(red), type(green), type(blue)) != (int, int, int):
         warnings.warn(f"Inputs for red, green, and blue must be integer values between 0 and 255. "
                       f"You entered types {(type(red), type(green), type(blue))} for (r, g, b)")
@@ -54,8 +51,7 @@ def colorsys_hsv_to_hsv360(colorsys_hsv=tuple):
     h = colorsys_hsv[0] * 360
     s = colorsys_hsv[1] * 100
     v = (colorsys_hsv[2] / 255) * 100
-    corrected_hsv = (regular_round(h), regular_round(s), regular_round(v))
-    return corrected_hsv
+    return regular_round(h), regular_round(s), regular_round(v)
 
 
 def hsv360_to_hsvdistance(hsv360=tuple):
@@ -63,8 +59,7 @@ def hsv360_to_hsvdistance(hsv360=tuple):
     Takes an HSV triplet as provided by colorsys_hsv_to_hsv360(), and converts it to match the
     notation used in the function for calculating distance between colors.
     """
-    h = (hsv360[0] / 360) * (2 * pi)
-    s = hsv360[1] / 100
-    v = hsv360[2] / 100
-    corrected_hsv = (h, s, v)
-    return corrected_hsv
+    new_h = (hsv360[0] / 360) * (2 * pi)
+    new_s = hsv360[1] / 100
+    new_v = hsv360[2] / 100
+    return new_h, new_s, new_v
