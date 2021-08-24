@@ -12,7 +12,7 @@ def unlist(object):
         return object
 
 
-def hsv_round(n, decimals=0):
+def regular_round(n, decimals=0):
     """
     Custom round function to return a value rounded to the correct number of decimals.
     In the case of HSV360, this is zero decimals (integer).
@@ -23,4 +23,9 @@ def hsv_round(n, decimals=0):
     """
     multiplier = 10 ** decimals
     return math.floor(n*multiplier + 0.5) / multiplier
+
+
+def format_hsv(h, s, v):
+    """formats hsv values as (float, float, int) where floats are rounded to three digits."""
+    return regular_round(h, 3), regular_round(s, 3), int(regular_round(v))
 
