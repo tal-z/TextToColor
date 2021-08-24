@@ -1,7 +1,7 @@
 from ColorController.show_color import show_named_color, show_coded_color
-from ColorController.conversions import *
-from ColorController.namelookup import *
-
+from ColorController.conversions import rgb_to_hex, format_hsv, unlist, hex_to_rgb#, invert_rgb, colorsys_hsv_to_hsv360, hsv360_to_hsvdistance
+from ColorController.namelookup import find_closest_color_names, query_hex_codes
+import colorsys
 
 class ColorController:
 
@@ -31,7 +31,7 @@ class ColorController:
             self._hsv = hsv
             self._name = find_closest_color_names(self._hex_code)
         elif name:
-            self._hex_code = query_hex_code(name)
+            self._hex_code = query_hex_codes(name)
             self._rgb = [hex_to_rgb(code) for code in self._hex_code]
             hsv_list = []
             for color in self._rgb:
@@ -61,7 +61,7 @@ class ColorController:
         of the other properties. This is where the magic happens.
         """
         self._name = new_name
-        self._hex_code = query_hex_code(new_name)
+        self._hex_code = query_hex_codes(new_name)
         self._rgb = [hex_to_rgb(code) for code in self._hex_code]
         hsv_list = []
         for color in self._rgb:
@@ -163,6 +163,3 @@ class ColorController:
             show_coded_color(self)
 
 
-if __name__ == '__main__':
-    c = ColorController(hex_code='#ff0055')
-    c.show_color()
