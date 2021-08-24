@@ -62,7 +62,6 @@ def show_coded_color(color_object):
     plt.title(color_object.hex_code.upper(), fontsize=40)
     r, g, b = color_object.rgb
     text_r, text_g, text_b = invert_rgb(r, g, b)
-    print((r, text_r), (g, text_g), (b, text_b), sep='\n')
     if all(abs(ch1-ch2) < 75 for (ch1, ch2) in zip((text_r, text_g, text_b), (r, g, b))):
         text_color = '#000000'
     else:
