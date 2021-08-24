@@ -18,11 +18,17 @@ def regular_round(n, decimals=0):
     In the case of HSV360, this is zero decimals (integer).
     This custom round function works differently than the built-in round() function. It breaks ties by rounding up,
     whereas the built-in round() function breaks ties by rounding to the nearest even number.
+    If zero is passed to the decimals keyword, an int will be returned.
 
     See this primer on rounding in Python: https://realpython.com/python-rounding/
     """
-    multiplier = 10 ** decimals
-    return math.floor(n*multiplier + 0.5) / multiplier
+    if decimals > 0:
+        multiplier = 10 ** decimals
+        return math.floor(n*multiplier + 0.5) / multiplier
+    elif not decimals:
+        return int(math.floor(n + 0.5))
+    else:
+        raise ValueError(f"decimals expects an integer value greater than or equal to zero. You entered {decimals}.")
 
 
 def format_hsv(h, s, v):
