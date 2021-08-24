@@ -1,9 +1,9 @@
 import pandas as pd
 from math import sin, cos
-from conversions import hex_to_rgb, colorsys_hsv_to_hsv360, hsv360_to_hsvdistance
+from ColorController.conversions import hex_to_rgb, colorsys_hsv_to_hsv360, hsv360_to_hsvdistance
 import colorsys
 
-colors_df = pd.read_csv(r'colornames.txt', delimiter=" ", skiprows=60, header=None)
+colors_df = pd.read_csv(r'ColorController/colornames.txt', delimiter=" ", skiprows=60, header=None)
 
 colors_df.columns = ['IDX', 'NAME',
                      'rgb', 'R', 'G', 'B',

@@ -2,7 +2,7 @@ import colorsys
 import unittest
 from math import pi
 
-from conversions import rgb_to_hex, hex_to_rgb, invert_rgb, colorsys_hsv_to_hsv360, hsv360_to_hsvdistance
+from ColorController.conversions import rgb_to_hex, hex_to_rgb, invert_rgb, colorsys_hsv_to_hsv360, hsv360_to_hsvdistance
 
 
 class TestConversions(unittest.TestCase):

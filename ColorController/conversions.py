@@ -1,5 +1,5 @@
 from math import pi
-from helpers import *
+from ColorController.helpers import *
 import warnings
 
 

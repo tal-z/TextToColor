@@ -1,6 +1,6 @@
-from show_color import show_named_color, show_coded_color
-from conversions import *
-from namelookup import *
+from ColorController.show_color import show_named_color, show_coded_color
+from ColorController.conversions import *
+from ColorController.namelookup import *
 
 
 class ColorController:

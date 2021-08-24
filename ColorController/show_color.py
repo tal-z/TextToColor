@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from conversions import invert_rgb, rgb_to_hex
+from ColorController.conversions import invert_rgb, rgb_to_hex
 
 
 def place_title_linebreak(title):
