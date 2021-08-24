@@ -30,10 +30,10 @@ def measure_hsv_distance(hsv1=tuple, hsv2=tuple):
     return distance
 
 
-def query_hex_code(token=str):
+def query_hex_codes(token=str):
     """
     Takes a color name, and checks whether it is present in a pre-defined dictionary of color names.
-    If the token is found, it returns the full range of hex codes that match the color name.
+    If the name is found, it returns the full range of hex codes that match the color name.
     """
     token = token.replace(" ", "_").lower()
     if token in colors_df.NAME.values:
