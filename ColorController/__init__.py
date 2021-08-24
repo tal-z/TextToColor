@@ -1,1 +1,1 @@
-from ColorController.ColorController import *
+from ColorController.ColorController import ColorController
