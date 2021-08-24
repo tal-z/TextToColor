@@ -54,7 +54,7 @@ def colorsys_hsv_to_hsv360(colorsys_hsv=tuple):
     h = colorsys_hsv[0] * 360
     s = colorsys_hsv[1] * 100
     v = (colorsys_hsv[2] / 255) * 100
-    corrected_hsv = (hsv_round(h), hsv_round(s), hsv_round(v))
+    corrected_hsv = (regular_round(h), regular_round(s), regular_round(v))
     return corrected_hsv
 
 
