@@ -226,6 +226,8 @@ Name: 5000, dtype: object
   - tint and shade methods instead of or in addition to lighten/darken?
   - more unit tests
   - re-do readme with new show methods
+  - module to mix colors
+    - this will require converting to LAB or another subtractive space, so more getter/setter methods
 
 ## Resources:
   - What is color?: https://www.crayola.com/for-educators/resources-landing/articles/color-what-is-color.aspx
