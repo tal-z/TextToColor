@@ -5,10 +5,18 @@ import colorsys
 
 class ColorController:
 
-    def __init__(self, hex_code=None, rgb=None, hsv=None, name=None):
-        """Initialize class with one and only one of four optional attributes. If multiple attributes are passed,
-        only one is used. The order of use is hex_code, rgb, hsv, name. You should only pass one of these arguments upon
-        initializing a new ColorController object."""
+    def __init__(self, hex_code='', rgb=None, hsv=None, name=''):
+        """Initialize class with one and only one of four optional attributes.
+        If multiple attributes are passed, only one is used.
+        The order of use is: hex_code, rgb, hsv, name.
+        You should only pass one of these arguments upon initializing a new ColorController object.
+
+        Example Inputs:
+        hex_code --> '#ff0000'
+        rgb --> (0, 255, 135)
+        hsv --> (0.0, 1.0, 255)
+        name --> 'maroon'
+        """
         if hex_code:
             self._hex_code = hex_code
             self._rgb = hex_to_rgb(hex_code)
