@@ -172,6 +172,23 @@ Shows the following in series:
 
 
 #### Example 2.2: Lighten a color.
+
+You can also pass in a lightening_value between zero and one, to set the percent lighter you'd like to go. For instance:
+```python
+color = ColorController(hex_code='#6c3461')
+
+color.show_color()
+
+color.lighten_color(.5)
+
+color.show_color()
+```
+Shows the following in series:
+
+![[grape]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/grape.PNG?raw=true "grape")
+![[grayish_fuchsia]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/grayish_fuchsia.PNG?raw=true "grayish_fuchsia")
+
+
 #### Example 2.3: Brighten a color.
 
 ### 3. Invert a color.

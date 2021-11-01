@@ -1,10 +1,10 @@
 
 from ColorController import ColorController
 
-color = ColorController(name='cocoa')
+color = ColorController(hex_code='#6c3461')
 
 color.show_color()
 
-color.darken_color(.3)
+color.lighten_color(.5)
 
 color.show_color()
