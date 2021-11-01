@@ -1,5 +1,13 @@
 # ColorController.py
 
+# Table of Contents
+1. [Example 1](#1-encode-color-data-in-various-formats)
+2. [Example 2](#2-modify-a-color-using-simple-convenient-methods)
+3. [Example 3](#3-invert-a-color)
+4. [Example 4](#4-access-a-rich-set-of-color-values-and-color-names-prepared-by-martin-krzywinski-conveniently-stored-in-a-pandas-dataframe)
+
+
+
 Welcome to the ColorController Python library! 
 
 My name is Tal Zaken, and I wrote this library for use in a natural language processing project 
