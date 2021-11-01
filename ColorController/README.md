@@ -167,8 +167,8 @@ color.show_color()
 ```
 Shows the following in series:
 
-![[daffodil]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/cocoa.PNG?raw=true "cocoa")
-![[vomit]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/nutmeg.PNG?raw=true "nutmeg")
+![[cocoa]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/cocoa.PNG?raw=true "cocoa")
+![[nutmeg]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/nutmeg.PNG?raw=true "nutmeg")
 
 
 #### Example 2.2: Lighten a color.
