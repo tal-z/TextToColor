@@ -6,7 +6,7 @@ import colorsys
 class ColorController:
 
     def __init__(self, hex_code='', rgb=None, hsv=None, name=''):
-        """Initialize class with one and only one of four optional attributes.
+        """Initializes class with one and only one of four optional attributes.
         If multiple attributes are passed, only one is used.
         The order of use is: hex_code, rgb, hsv, name.
         You should only pass one of these arguments upon initializing a new ColorController object.
