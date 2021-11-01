@@ -152,8 +152,8 @@ color.show_color()
 ```
 Will show the following in series:
 
-![[parsley]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/forest.PNG?raw=true "forest")
-![[peppermint_green]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/hunter_green.PNG?raw=true "hunter_green")
+![[forest]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/forest.PNG?raw=true "forest")
+![[hunter_green]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/hunter_green.PNG?raw=true "hunter_green")
 
 You can also pass in a darkening_value between zero and one, to set the percent darker you'd like to go. For instance:
 ```python
