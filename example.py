@@ -1,7 +1,10 @@
+
 from ColorController import ColorController
 
-color = ColorController(name='hazel')
+color = ColorController(name='forest')
 
-color.hex_code ='#ffbff9'
+color.show_color()
+
+color.darken_color()
 
 color.show_color()

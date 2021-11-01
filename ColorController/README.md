@@ -142,7 +142,7 @@ You can darken a color using the darken_color() method. For example:
 ```python
 from ColorController import ColorController
 
-color = ColorController(name='parsley')
+color = ColorController(name='forest')
 
 color.show_color()
 
@@ -152,12 +152,12 @@ color.show_color()
 ```
 Will show the following in series:
 
-![[parsley]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/parsley.PNG?raw=true "parsley")
-![[peppermint_green]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/peppermint_green.PNG?raw=true "peppermint_green")
+![[parsley]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/forest.PNG?raw=true "forest")
+![[peppermint_green]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/hunter_green.PNG?raw=true "hunter_green")
 
 You can also pass in a darkening_value between zero and one, to set the percent darker you'd like to go. For instance:
 ```python
-color = ColorController(name='daffodil')
+color = ColorController(name='cocoa')
 
 color.show_color()
 
@@ -167,8 +167,8 @@ color.show_color()
 ```
 Shows the following in series:
 
-![[daffodil]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/daffodil.PNG?raw=true "daffodil")
-![[vomit]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/vomit.PNG?raw=true "vomit")
+![[daffodil]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/cocoa.PNG?raw=true "cocoa")
+![[vomit]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/nutmeg.PNG?raw=true "nutmeg")
 
 
 #### Example 2.2: Lighten a color.
