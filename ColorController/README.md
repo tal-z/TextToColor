@@ -2,6 +2,11 @@
 
 # Table of Contents
 1. [Encode color data in various formats.](#1-encode-color-data-in-various-formats)
+   - [1.1: Create a ColorController object using a familiar, english-language color name, and print out its properties.](#example-11-create-a-colorcontroller-object-using-a-familiar-english-language-color-name-and-print-out-its-properties)
+   - [1.2: Show a color](#example-12-show-a-color)
+   - [1.3: Create a ColorController object using a hex code.](#example-13-create-a-colorcontroller-object-using-a-hex-code)
+   - [1.4: Create a ColorController object using an RGB triplet](#example-14-create-a-colorcontroller-object-using-an-rgb-triplet)
+   - [1.5: Create a ColorController object using an HSV triplet, and print out its properties.](#example-15-create-a-colorcontroller-object-using-an-hsv-triplet-and-print-out-its-properties)
 2. [Modify a color using simple, convenient methods.](#2-modify-a-color-using-simple-convenient-methods)
 3. [Invert a color](#3-invert-a-color)
 4. [Access a rich set of color values and color names](#4-access-a-rich-set-of-color-values-and-color-names-prepared-by-martin-krzywinski-conveniently-stored-in-a-pandas-dataframe)
