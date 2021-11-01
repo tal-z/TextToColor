@@ -18,7 +18,7 @@ See the colornames.txt document contained herein, with enormous thanks to
 The following code:
 
 ```python
-from ColorController.ColorController import ColorController
+from ColorController import ColorController
 
 color = ColorController(name='hazel')
 
@@ -33,9 +33,10 @@ outputs:
 Name: hazel
 Hex Code: ['#8E7618']
 RGB: [(142, 118, 24)]
-HSV: [(0.1327683615819209, 0.8309859154929577, 142)]
+HSV: [(0.133, 0.831, 142)]
 ```
-Further, you can change all of the ColorController's properties by changing any one of them. 
+Further, you can change all the ColorController's properties by changing any one of them. 
+
 By example:
 ```python
 color.name = 'blue'
@@ -49,9 +50,9 @@ print(f"Name: {color.name}",
 You will see that all properties have updated:
 ```
 Name: blue
-Hex Code: ['#00008B', '#0000CD', '#0000EE', '#0000FF', '#0087BD', '#0093AF', '#0018A8', '#0247FE', '#0343DF', '#1F75FE', '#2242C7', '#333399']
-RGB: [(0, 0, 139), (0, 0, 205), (0, 0, 238), (0, 0, 255), (0, 135, 189), (0, 147, 175), (0, 24, 168), (2, 71, 254), (3, 67, 223), (31, 117, 254), (34, 66, 199), (51, 51, 153)]
-HSV: [(0.6666666666666666, 1.0, 139), (0.6666666666666666, 1.0, 205), (0.6666666666666666, 1.0, 238), (0.6666666666666666, 1.0, 255), (0.5476190476190476, 1.0, 189), (0.5266666666666667, 1.0, 175), (0.6428571428571428, 1.0, 168), (0.621031746031746, 0.9921259842519685, 254), (0.6181818181818182, 0.9865470852017937, 223), (0.6023916292974589, 0.8779527559055118, 254), (0.6343434343434343, 0.8291457286432161, 199), (0.6666666666666666, 0.6666666666666666, 153)]
+Hex Code: ['#00008B', '#0000CD', '#0000EE', '#0000FF', '#0018A8', '#0087BD', '#0093AF', '#0247FE', '#0343DF', '#1F75FE', '#2242C7', '#333399']
+RGB: [(0, 0, 139), (0, 0, 205), (0, 0, 238), (0, 0, 255), (0, 24, 168), (0, 135, 189), (0, 147, 175), (2, 71, 254), (3, 67, 223), (31, 117, 254), (34, 66, 199), (51, 51, 153)]
+HSV: [(0.667, 1.0, 139), (0.667, 1.0, 205), (0.667, 1.0, 238), (0.667, 1.0, 255), (0.643, 1.0, 168), (0.548, 1.0, 189), (0.527, 1.0, 175), (0.621, 0.992, 254), (0.618, 0.987, 223), (0.602, 0.878, 254), (0.634, 0.829, 199), (0.667, 0.667, 153)]
 ```
 Notably, the colornames.txt file has numerous entries that all share the name "blue." This is true of many colors.
 Because color is thought to be a culturally relative phenomenon, I have chosen to return all hex codes that match a given name. 
