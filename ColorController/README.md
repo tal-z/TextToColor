@@ -210,6 +210,27 @@ Shows the following in series:
 #### Example 2.3: Brighten a color.
 
 ### 3. Invert a color.
+Example:
+```python
+from ColorController.conversions import invert_rgb
+from ColorController import ColorController
+
+
+color = ColorController(hex_code='#9ffeb0')
+color.show_color()
+
+r, g, b = color.rgb
+color.rgb = invert_rgb(r, g, b)
+color.show_color()
+```
+Shows the following in series:
+
+![[mint]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/mint.PNG?raw=true "mint")
+![[deep_orchid]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/deep_orchid.PNG?raw=true "deep_orchid")
+
+
+
+
 ### 4. Access a rich set of color values and color names (prepared by Martin Krzywinski), conveniently stored in a Pandas DataFrame.
 Example:
 
@@ -261,7 +282,6 @@ Name: 5000, dtype: object
 ## Ideas
   - tint and shade methods instead of or in addition to lighten/darken?
   - more unit tests
-  - re-do readme with new show methods
   - module to mix colors
     - this will require converting to LAB or another subtractive space, so more getter/setter methods
 
