@@ -183,6 +183,11 @@ Shows the following in series:
 ![[cocoa]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/cocoa.PNG?raw=true "cocoa")
 ![[nutmeg]](https://github.com/tal-z/TextToColor/blob/main/ColorController/readmepics/nutmeg.PNG?raw=true "nutmeg")
 
+In the above example, note that our color object was first initiated by the name property, 
+meaning that there are lists of associated hex, rgb, and hsv values stored in their respective properties.
+When we lighten the color, we have to select one index from these lists to operate on. 
+The default behavior is to operate on the first index. See the `unlist()` function in helpers.py.
+
 
 #### Example 2.2: Lighten a color.
 
