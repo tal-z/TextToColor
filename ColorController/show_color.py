@@ -24,7 +24,7 @@ def set_title_fontsize(title):
     return fontsize
 
 
-def show_named_color(color_object, rotatelabels=False, labelfontsize=12):
+def show_named_color(color_object, rotatelabels=False, labelfontsize=12, *args, **kwargs):
     if color_object.name.lower() == 'grey':
         rotatelabels = True
         labelfontsize = 4
@@ -42,7 +42,7 @@ def show_named_color(color_object, rotatelabels=False, labelfontsize=12):
     plt.show()
 
 
-def show_coded_color(color_object):
+def show_coded_color(color_object, *args, **kwargs):
     fig, ax = plt.subplots()
     data = [1 for name in color_object.name] * 2
     list_spacer = [" " for name in color_object.name]

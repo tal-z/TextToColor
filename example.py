@@ -1,10 +1,15 @@
 from ColorController.conversions import invert_rgb
 from ColorController import ColorController
+import matplotlib.pyplot as plt
 
+grey = ColorController(name='green')
+grey.show_color()
 
-color = ColorController(hex_code='#9ffeb0')
-color.show_color()
+red = ColorController(hex_code='#ff0000')
+red.show_color()
 
-r, g, b = color.rgb
-color.rgb = invert_rgb(r, g, b)
-color.show_color()
+red.lighten_color()
+red.show_color()
+
+grey = ColorController(name='grey')
+grey.show_color()

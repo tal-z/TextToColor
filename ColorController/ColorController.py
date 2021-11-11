@@ -164,7 +164,7 @@ class ColorController:
         v = min((v * (1 + brightening_value), 255))
         self.hsv = format_hsv(h, s, v)
 
-    def show_color(self):
+    def show_color(self, *args, **kwargs):
         if type(self.hex_code) == list:
             show_named_color(self)
         else:

@@ -27,7 +27,7 @@ def wup_similarity(token1, token2):
         return 0
 
 
-my_token = "lizard"
+my_token = "gray"
 
 try:
     test_color = ColorController(name=my_token)
